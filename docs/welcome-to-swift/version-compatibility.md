@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 기본
-parent: 환영합니다
+title: Version Compatibility
+parent: Welcome
 nav_order: 2
 ---
 

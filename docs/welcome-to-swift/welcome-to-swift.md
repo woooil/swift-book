@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 환영합니다
+title: Welcome
 nav_order: 2
 has_children: true
 permalink: welcome-to-swift

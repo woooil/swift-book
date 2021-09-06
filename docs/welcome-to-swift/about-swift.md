@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Swift에 대하여
-parent: 환영합니다
+title: About Swift
+parent: Welcome
 nav_order: 1
 ---
 
