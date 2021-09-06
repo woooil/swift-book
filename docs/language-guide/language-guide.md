@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Swift
+title: Swift 안내서
 nav_order: 3
 has_children: true
-permalink: Language Guide
+permalink: language-guide
 ---
