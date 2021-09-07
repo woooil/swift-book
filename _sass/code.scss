@@ -6,8 +6,9 @@
 code {
   padding: 0.2em 0.15em;
   font-weight: 400;
-  background-color: $code-background-color;
-  border: $border $border-color;
+  // background-color: $code-background-color;
+  // border: $border $border-color;
+  border-left: 5px solid rgba(205,233,244,1)
   border-radius: $border-radius;
 }
 
@@ -49,7 +50,7 @@ div.highlighter-rouge {
   margin-top: 0;
   margin-bottom: $sp-3;
   overflow-x: auto;
-  background-color: $code-background-color;
+  // background-color: $code-background-color;
   border-radius: $border-radius;
   box-shadow: none;
   -webkit-overflow-scrolling: touch;
@@ -69,7 +70,7 @@ figure.highlight {
   padding: $sp-3;
   margin-top: 0;
   margin-bottom: $sp-3;
-  background-color: $code-background-color;
+  // background-color: $code-background-color;
   border-radius: $border-radius;
   box-shadow: none;
   -webkit-overflow-scrolling: touch;
@@ -95,7 +96,7 @@ figure.highlight {
     @include fs-2;
     min-width: 0;
     padding: 0;
-    background-color: $code-background-color;
+    // background-color: $code-background-color;
     border: 0;
   }
 
