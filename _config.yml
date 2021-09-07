@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Swift 프로그래밍 언어
 description: The Swift Programming Language의 한국어 번역본
-baseurl: "/swift-book" # the subpath of your site, e.g. /blog
+baseurl: "/good-swift-book" # the subpath of your site, e.g. /blog
 url: "https://woooil.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
