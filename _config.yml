@@ -28,7 +28,7 @@ defaults:
       path: 'docs'
       type: pages
     values:
-      permalink: /:title
+      permalink: /:basename
 
 # Regression tests
 # By default, the pages in /docs/tests are excluded when the ste is built.
