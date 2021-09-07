@@ -25,10 +25,10 @@ exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "pac
 
 defaults:
   - scope:
-      path: 'docs'
+      path: 'docs/welcome-to-swift'
       type: pages
     values:
-      permalink: /:basename
+      permalink: /welcome-to-swift/:basename
 
 # Regression tests
 # By default, the pages in /docs/tests are excluded when the ste is built.
