@@ -7,8 +7,7 @@ code {
   padding: 0.2em 0.15em;
   font-weight: 400;
   // background-color: $code-background-color;
-  // border: $border $border-color;
-  border-left: 5px solid rgba(205,233,244,1);
+  border: $border $border-color;
   border-radius: $border-radius;
 }
 
@@ -61,6 +60,10 @@ div.highlighter-rouge {
     padding: 0;
     margin: 0;
     border: 0;
+  }
+
+  div.highlight {
+    border-left: 5px solid rgba(205,233,244,1);
   }
 }
 
