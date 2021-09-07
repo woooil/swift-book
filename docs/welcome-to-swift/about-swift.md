@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Typography
+title: About Swift
 parent: Welcome to Swift
 nav_order: 1
 ---
