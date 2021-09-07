@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Swift에 대하여
+title: 버전 호환성
 parent: 환영합니다
-nav_order: 1
+nav_order: 2
 ---
 
-# Swift에 대하여
+# 버전 호환성
 
 블라블라

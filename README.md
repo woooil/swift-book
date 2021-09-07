@@ -14,5 +14,5 @@
 ## 저작권
 
 * 본 전자책의 원문은 Apple의 [The Swift Programming Language](https://docs.swift.org/swift-book/)입니다. 
-* [GitHub 페이지](https://woooil.github.io/swift-book/)는 Jekyll 테마인 [Just the Docs](https://github.com/pmarsceill/just-the-docs]를 사용하고 있습니다.
-* 저작권을 침해하고 싶지는 않지만 이렇게 저작권을 표시하면 되는 건지는 모르겠습니다.
+* [GitHub 페이지](https://woooil.github.io/swift-book/)는 Jekyll 테마인 [Just the Docs](https://github.com/pmarsceill/just-the-docs)를 사용하고 있습니다.
+* 저작권을 침해하고 싶지는 않지만 이렇게 저작권을 표기하는 게 맞는지는 모르겠습니다.
