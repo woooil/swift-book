@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Revision History
+title: 수정 이력
 nav_order: 5
 has_children: true
 ---

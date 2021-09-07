@@ -1,9 +1,8 @@
 ---
 layout: default
-title: Language Guide
+title: Swift 안내서
 nav_order: 3
 has_children: true
-permalink: /language-guide
 ---
 
 # UI Components

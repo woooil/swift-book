@@ -1,7 +1,7 @@
 ---
 layout: default
-title: The Basics
-parent: Language Guide
+title: 기본
+parent: Swift 안내서
 nav_order: 1
 ---
 

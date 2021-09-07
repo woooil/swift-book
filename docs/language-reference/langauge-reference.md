@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Language Reference
+title: Swift 레퍼런스
 nav_order: 4
 has_children: true
 ---
