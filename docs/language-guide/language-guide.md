@@ -1,9 +1,9 @@
 ---
 layout: default
-title: UI Components
-nav_order: 4
+title: Language Guide
+nav_order: 3
 has_children: true
-permalink: /docs/ui-components
+permalink: /language-guide
 ---
 
 # UI Components
