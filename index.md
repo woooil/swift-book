@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Home
+title: 환영합니다
 nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "The Swift Programming Language의 한국어 번역본입니다."
 permalink: /
 ---
