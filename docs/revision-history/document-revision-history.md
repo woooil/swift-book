@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Typography
+title: Document Revision History
 parent: Revision History
 nav_order: 1
 ---
