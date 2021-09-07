@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About the Language Reference
+title: Typography
 parent: Language Reference
 nav_order: 1
 ---
