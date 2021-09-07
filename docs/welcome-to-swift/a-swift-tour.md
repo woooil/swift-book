@@ -3,7 +3,7 @@ layout: default
 title: Swift 둘러보기
 description: A Swift Tour
 parent: 환영합니다
-nav_order: 2
+nav_order: 3
 ---
 
 # Swift 둘러보기
