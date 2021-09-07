@@ -18,7 +18,7 @@ Swift의 `String`과 `Character` 형은 빠를 뿐만 아니라 유니코드를 
 > 
 > Swift의 `String` 형은 Foundation의 `NSString` 클래스와 연결됩니다. Foundation 역시 `NSString`으로 정의된 메서드를 노출하고자 `String`을 확장합니다. Foundation을 불러오면, 이렇게 `String`이 사용된 `NSString` 메서드에 형 변환 없이 접근할 수 있습니다.
 
-Foundation이나 Cocoa와 함께 `String`을 사용하는 것에 관한 자세한 정보는 [`String`과 `NSString`의 연결]()을 참고하세요.
+Foundation이나 Cocoa와 함께 `String`을 사용하는 것에 관한 자세한 정보는 [`String`과 `NSString`의 연결(영문)](https://developer.apple.com/documentation/swift/string#2919514)을 참고하세요.
 
 ## 문자열 리터럴
 
@@ -80,7 +80,7 @@ It also ends with a line break.
 
 다행 문자열을 둘러싸고 있는 코드에 맞춰서 문자열에도 들여쓰기를 할 수 있습니다. Swift는 닫는 따옴표(`"""`) 앞에 있는 공백을 보고 이전의 모든 줄에서 무시할 공백을 결정합니다. 닫는 따옴표 앞의 공백 외에 추가적인 공백을 다른 줄 앞에 추가하면 그 공백은 **포함됩니다.**
 
-![](../.gitbook/assets/multilineStringWhitespace.png)
+![](../../assets/images/multilineStringWhitespace.png)
 
 위의 예시에서는, 전체 다행 문자열 리터럴이 들여쓰기 되었음에도 문자열의 처음과 마지막 줄은 공백으로 시작하지 않습니다. 중간 줄은 닫는 따옴표보다 들여쓰기가 더 많으므로 추가적인 네 개의 공백으로 시작합니다.
 
@@ -89,7 +89,7 @@ It also ends with a line break.
 스트링 리터럴에는 다음과 같은 특수 문자들이 있습니다.
 
 * 이스케이프 특수 문자 `\0` (널 문자), `\\` (백슬래시), `\t` (수평 탭), `\n` (라인 피드), `\r` (캐리지 리턴), `\"` (큰따옴표), `\'` (작은따옴표)
-* 유니코드 스칼라 값. 1~8자리의 십육진수 n을 사용해 `\u{`n`}`으로 표기. (유니코드는 아래 [유니코드]()에서 다룹니다.)
+* 유니코드 스칼라 값. 1~8자리의 십육진수 n을 사용해 `\u{`n`}`으로 표기. (유니코드는 아래 [유니코드](#유니코드)에서 다룹니다.)
 
 아래 코드에 특수 문자를 사용하는 예시가 네 가지 나와 있습니다. `wiseWords` 상수는 이스케이프 큰따옴표 두 개를 포함하고 있습니다. `dollarSign`, `blackHearts`, `sparklingHeart` 상수는 유니코드 스칼라 형식을 보여주고 있습니다.
 
@@ -163,7 +163,7 @@ constantString += " and another highlander"
 
 ## 문자열은 값형이다
 
-Swift에서 `String` 형은 **값형**입니다. 새로운 `String` 값을 생성하면, 그 `String` 값이 함수나 메서드로 전달되거나 상수나 변수에 할당될 때, 값이 **복사**됩니다. 각각의 경우 기존의 `String` 값의 복제본이 생성됩니다. 기존 버전이 아닌 이 복제본이 전달되거나 할당되는 것입니다. 값형은 [구조체와 열거형은 값형이다]()에 설명되어 있습니다.
+Swift에서 `String` 형은 **값형**입니다. 새로운 `String` 값을 생성하면, 그 `String` 값이 함수나 메서드로 전달되거나 상수나 변수에 할당될 때, 값이 **복사**됩니다. 각각의 경우 기존의 `String` 값의 복제본이 생성됩니다. 기존 버전이 아닌 이 복제본이 전달되거나 할당되는 것입니다. 값형은 [구조체와 열거형은 값형이다](classes-and-structures.md#구조체와-열거형은-값형이다)에 설명되어 있습니다.
 
 Swift가 기본적으로 `String`을 복사하는 까닭은, 함수나 메서드가 `String` 값을 전달할 때 그 값의 출처에 무관하게 그 `String` 값을 정확하고 온전하게 전달받도록 하기 위함입니다. 덕분에 문자열을 어딘가로 전달하더라도 직접 수정하지 않는 한 수정되는 일은 없으리라 확신할 수 있습니다.
 
@@ -184,7 +184,7 @@ for character in "Dog!🐶" {
 // 🐶
 ```
 
-`for`-`in` 반복문은 [For-In 반복분]()을 참고하세요.
+`for`-`in` 반복문은 [For-In 반복분](control-flow.md#For-In-반복문)을 참고하세요.
 
 또는 독립적인 `Character` 상수나 변수를 만들 수도 있습니다. 하나의 문자로 이루어진 문자열 리터럴을 생성하고 `Character` 형이라고 명시하세요.
 
@@ -466,11 +466,11 @@ let newString = String(beginning)
 
 위 예시에서 `greeting`은 문자열입니다. 즉, 문자열을 이루는 문자들이 저장된 메모리의 범위가 정해져 있습니다. `beginning`은 `greeting`의 부분 문자열이므로 `greeting`이 사용하는 메모리를 재사용합니다. 반면 `newString`은 문자열이므로 부분 문자열로부터 만들어질 때 자신만의 저장 공간을 가지게 됩니다. 아래 그림이 이 관계를 보여줍니다.
 
-![](../.gitbook/assets/stringSubstring.png)
+![](../../assets/images/stringSubstring.png)
 
 > **참고**
 > 
-> `String`과 `Substring` 모두 [StringProtocol](https://developer.apple.com/documentation/swift/stringprotocol) 프로토콜을 따릅니다. 즉, 문자열을 조작하는 함수가 `StringProtocol` 값을 받아들이도록 하면 편리할 수도 있습니다. 그런 함수를 `String`이나 `Substring` 값과 함께 호출하세요.
+> `String`과 `Substring` 모두 [StringProtocol(영문)](https://developer.apple.com/documentation/swift/stringprotocol) 프로토콜을 따릅니다. 즉, 문자열을 조작하는 함수가 `StringProtocol` 값을 받아들이도록 하면 편리할 수도 있습니다. 그런 함수를 `String`이나 `Substring` 값과 함께 호출하세요.
 
 ## 문자열 비교
 
@@ -478,7 +478,7 @@ Swift는 문자로 이루어진 값을 비교하는 데 다음 세 가지 방법
 
 ### 문자열 및 문자 동등 연산자
 
-문자열과 문자가 동등한지 여부는 [비교 연산자](basic-operators.md#undefined-4)에 기술되었듯이 동등 연산자(`==`)와 부등 연산자(`!=`)로 확인합니다. 
+문자열과 문자가 동등한지 여부는 [비교 연산자](basic-operators.md#비교-연산자)에 기술되었듯이 동등 연산자(`==`)와 부등 연산자(`!=`)로 확인합니다. 
 
 ```swift
 let quotation = "We're a lot alike, you and I."
@@ -576,13 +576,13 @@ print("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
 
 > **참고**
 > 
-> `hasPrefix(_:)`와 `hasSuffix(_:)` 메서드는 [문자열 및 문자 동등 연산자]()에서처럼 문자열의 확장 문자소 단위의 각각의 문자에 대해 정규적 동등 비교를 수행합니다. 
+> `hasPrefix(_:)`와 `hasSuffix(_:)` 메서드는 [문자열 및 문자 동등 연산자](#문자열-및-문자-동등-연산자)에서처럼 문자열의 확장 문자소 단위의 각각의 문자에 대해 정규적 동등 비교를 수행합니다. 
 
 ## 문자열의 유니코드 표현
 
 텍스트 파일이나 다른 저장 공간에 유니코드 문자열을 작성하면 그 문자열의 유니코드 스칼라는 유니코드에 의해 정의된 몇 가지 **인코딩 형식** 중 하나로 인코딩됩니다. 각각의 형식들은 문자열을 **코드 단위**로 알려진 작은 조각들로 인코딩합니다. 이런 형식에는 UTF-8 인코딩 형식(8비트 코드 단위로 인코딩), UTF-16 인코딩 형식(16비트 코드 단위로 인코딩), UTF-32 인코딩 형식(32비트 코드 단위로 인코딩) 등이 있습니다.
 
-Swift에는 문자열의 유니코드 표현에 접근하는 방법이 몇 가지 있습니다. `for`-`in` 구문으로 문자열을 반복하여 각각의 `Character` 값들을 유니코드 확장 문자소 단위로 구분하여 접근할 수 있습니다. 이런 과정은 [문자 다루기]()에 나와 있습니다.
+Swift에는 문자열의 유니코드 표현에 접근하는 방법이 몇 가지 있습니다. `for`-`in` 구문으로 문자열을 반복하여 각각의 `Character` 값들을 유니코드 확장 문자소 단위로 구분하여 접근할 수 있습니다. 이런 과정은 [문자 다루기](#문자-다루기)에 나와 있습니다.
 
 또는 다음 세 가지 유니코드 표현 방식에 따라 `String` 값에 접근해보세요.
 
@@ -600,7 +600,7 @@ let dogString = "Dog‼🐶"
 
 `String`의 UTF-8 표현은 문자열의 `utf8` 프로퍼티를 반복하여 접근할 수 있습니다. 이 프로퍼티는 `String.UTF8View` 형으로, UTF-8 표현에서 각각의 바이트에 해당하는 부호 없는 8비트(`UInt8`) 값들을 컬렉션 형태로 가집니다.
 
-![](../.gitbook/assets/UTF8.png)
+![](../../assets/images/UTF8.png)
 
 ```swift
 for codeUnit in dogString.utf8 {
@@ -616,7 +616,7 @@ print("")
 
 `String`의 `utf16` 프로퍼티를 반복하여 문자열의 UTF-16 표현에 접근할 수 있습니다. 이 프로퍼티는 `String.UTF16View` 형으로, UTF-16 표현에서 각각의 16비트 코드 단위에 해당하는 부호 없는 16비트(`UInt16`) 값들을 컬렉션 형태로 가집니다.
 
-![](../.gitbook/assets/UTF16.png)
+![](../../assets/images/UTF16.png)
 
 ```swift
 for codeUnit in dogString.utf16 {
@@ -638,7 +638,7 @@ print("")
 
 각각의 `UnicodeScalar`는 `value` 프로퍼티를 가지고 있습니다. 이 프로퍼티가 `UInt32` 값으로 표현되는 스칼라의 21비트 값을 반환합니다.
 
-![](../.gitbook/assets/UnicodeScalar.png)
+![](../../assets/images/UnicodeScalar.png)
 
 ```swift
 for scalar in dogString.unicodeScalars {
