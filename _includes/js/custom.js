@@ -1,4 +1,4 @@
-var toc = document.querySelector("details .no_toc")
+var toc = document.querySelector("details.no_toc")
 if(toc.hasAttribute("open")) {
-    toc.removeAttribute("open")
+    toc.removeAttribute("open");
 }
