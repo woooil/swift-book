@@ -117,17 +117,21 @@ layout: table_wrappers
               {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
-          <!-- <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
               {% if page.grand_parent %}
-                <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.grand_parent }}</a></li>
+                <!-- <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.grand_parent }}</a></li>
                 <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ page.parent }}</a></li>
               {% else %}
-                <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.parent }}</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.parent }}</a></li> -->
+                <li class="breadcrumb-nav-list-item">{{ page.grand_parent }}</li>
+                <li class="breadcrumb-nav-list-item">{{ page.parent }}</li>
+              {% else %}
+                <li class="breadcrumb-nav-list-item">{{ page.parent }}</li>
               {% endif %}
               <li class="breadcrumb-nav-list-item"><span>{{ page.title }}</span></li>
             </ol>
-          </nav> -->
+          </nav>
         {% endif %}
       {% endunless %}
       <div id="main-content" class="main-content" role="main">
@@ -159,6 +163,20 @@ layout: table_wrappers
             {% if site.back_to_top %}
               <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
             {% endif %}
+            <!-- test -->
+            <div class="post-nav">
+              <div>
+                {% if page.previous.url %}
+                <a href="{{page.previous.url}}">&laquo;&nbsp;{{page.previous.title}}</a>
+                {% endif %}
+              </div>
+              <div class="post-nav-next">
+                {% if page.next.url %}
+                <a href="{{page.next.url}}">{{page.next.title}}&nbsp;&raquo;</a>
+                {% endif %}
+              </div>
+            </div>
+            <!-- test -->
 
             {{ footer_custom }}
 
