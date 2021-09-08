@@ -12,7 +12,7 @@ nav_order: 3
 
 <details open markdown="block">
   <summary>
-    Table of contents
+    목차
   </summary>
   {: .text-delta }
 1. TOC
