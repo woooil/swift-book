@@ -162,7 +162,7 @@ layout: table_wrappers
             <!-- test -->
             <div class="post-nav">
               {%- assign pages = site.pages
-                    | where_exp:"item", "item.nav_orde != nil" -%}
+                    | where_exp:"item", "item.nav_order != nil" -%}
               {% assign items = pages | sort: 'nav_order' %}
 
               {% if items.size > 1 %}
