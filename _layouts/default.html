@@ -166,15 +166,18 @@ layout: table_wrappers
               {%- assign items = items_raw
                     | where_exp:"item", "item.parent != nil" -%}
 
+              {%- assign group_raw = items_raw
+                    | where_exp:"item", "item.parent == page.parent" -%}
+              {% assign group = group_raw | sort: 'nav_order' %}
+
               {% if items.size > 1 %}
                 {% for item in items %}
-                  {% if item.parent == page.parent %}
-                    {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | minus: 1 %}
-                      {% assign prev = item %}
-                    {% endif %}
-                    {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | plus: 1 %}
-                      {% assign next = item %}
-                    {% endif %}
+                  <div>{{item.nav_order}}</div>
+                  {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | minus: 1 %}
+                    {% assign prev = item %}
+                  {% endif %}
+                  {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | plus: 1 %}
+                    {% assign next = item %}
                   {% endif %}
                 {% endfor %}
 
