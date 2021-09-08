@@ -10,7 +10,7 @@ nav_order: 4
 
 {: .no_toc }
 
-<details open markdown="block">
+<details markdown="block">
   <summary>
     목차
   </summary>
