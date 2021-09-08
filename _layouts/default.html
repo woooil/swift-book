@@ -169,10 +169,10 @@ layout: table_wrappers
               {% if items.size > 1 %}
                 {% for item in items %}
                   {% if item.parent == page.parent %}
-                    {% if item.nav_order == page.nav_order | minus: 1 %}
+                    {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | minus: 1 %}
                       {% assign prev = item %}
                     {% endif %}
-                    {% if item.nav_order == page.nav_order | plus: 1 %}
+                    {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | plus: 1 %}
                       {% assign next = item %}
                     {% endif %}
                   {% endif %}
@@ -180,13 +180,13 @@ layout: table_wrappers
 
                 <p>
                   {% if prev %}
-                    <a href="{{ prev.url | absolute_url}}" class="prev" title="{{ prev.title }}">&lt; Older</a>
+                    <a href="{{ prev.url | absolute_url}}" class="prev" title="{{ prev.title }}">&lt; {{ prev.title }}</a>
                   {% endif %}
                   {% if prev and next %}
                     <span> | </span>
                   {% endif %}
                   {% if next %}
-                    <a href="{{ next.url | absolute_url}}" class="next" title="{{ next.title }}">Newer &gt;</a>
+                    <a href="{{ next.url | absolute_url}}" class="next" title="{{ next.title }}">{{ next.title }} &gt;</a>
                   {% endif %}
                 </p>
               {% endif %}
