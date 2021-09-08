@@ -168,8 +168,9 @@ layout: table_wrappers
 
               {%- assign group = items_raw
                     | where_exp:"item", "item.parent == page.parent" -%}
-              {% assign prev_order = (page.nav_order | minus: 1) %}
-              {% assign next_order = (page.nav_order | plus: 1) %}
+              {% assign prev_order = page.nav_order | minus: 1 %}
+              {% assign next_order = page.nav_order | plus: 1 %}
+              {{ page.nav_order|minus: 1}}
 
               {% if group.size > 1 %}
                 {% for item in group %}
