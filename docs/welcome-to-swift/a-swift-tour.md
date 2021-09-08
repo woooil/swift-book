@@ -8,6 +8,19 @@ nav_order: 3
 
 # Swift 둘러보기
 
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+---
+
 전통적으로, 새로운 언어를 배우는 과정은 "Hello, world!"라는 문구를 화면에 출력해보는 것으로 시작하곤 합니다. Swift에서는 다음과 같이 한 줄이면 됩니다.
 
 ```swift
