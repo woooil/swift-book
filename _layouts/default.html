@@ -163,17 +163,14 @@ layout: table_wrappers
             <div class="post-nav">
               <div>
                 page titles:
-                {% for page in pages_list %}
-                  <div>{{page.title}}</div>
+                {% for node in pages_list %}
+                  {% if node.nav_order && page.nav_order && node.parent && page.parent && node.parent == page.parent %}
+                    <div>{{node.title}}</div>
+                    {% if node.nav_order = page.nav_order + 1 %}
+                      <span>wow {{node.title}}</span>
+                    {% endif %}
+                  {% endif %}
                 {% endfor %}
-                {% if page.previous.url %}
-                <a href="{{page.previous.url}}">&laquo;&nbsp;{{page.previous.title}}</a>
-                {% endif %}
-              </div>
-              <div class="post-nav-next">
-                {% if page.next.url %}
-                <a href="{{page.next.url}}">{{page.next.title}}&nbsp;&raquo;</a>
-                {% endif %}
               </div>
             </div>
             <!-- test -->
