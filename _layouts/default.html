@@ -166,7 +166,7 @@ layout: table_wrappers
             <!-- test -->
             <div class="post-nav">
               <div>
-                site.pages: {% site.pages %}
+                site.pages: {{ site.pages }}
                 {% if page.previous.url %}
                 <a href="{{page.previous.url}}">&laquo;&nbsp;{{page.previous.title}}</a>
                 {% endif %}
