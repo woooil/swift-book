@@ -44,6 +44,11 @@ defaults:
       type: pages
     values:
       permalink: /revision-history/:basename
+  - scope:
+      path: 'docs/more'
+      type: pages
+    values:
+      permalink: /more/:basename
 
 # Regression tests
 # By default, the pages in /docs/tests are excluded when the ste is built.
@@ -88,6 +93,9 @@ heading_anchors: true
 aux_links:
   "GitHub 저장소":
     - "https://github.com/woooil/swift-book"
+  "안내":
+    - "info.md"
+
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false

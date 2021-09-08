@@ -1,10 +1,18 @@
+---
+layout: default
+title: 안내
+permalink: /info
+nav_exclude: true
+search_exclude: true
+---
+
 # 소개
 
 이 전자책은 [The Swift Programming Language](https://docs.swift.org/swift-book/)의 한국어 번역본입니다. 번역에 관한 자세한 정보는 [번역 지침](more/translation-guideline.md)을 확인해주세요.
 
 ## 전자책
 
-[GitHub 페이지](https://woooil.github.io/swift-book/)에서 책을 확인하실 수 있습니다. 책에 관한 모든 소스는 이곳 [GitHub 저장소](https://github.com/woooil/swift-book)에 공개되어 있습니다.
+책은 [GitHub 페이지](https://woooil.github.io/swift-book/)에서 확인하실 수 있습니다. 책에 관한 모든 소스 및 자세한 정보는 [GitHub 저장소](https://github.com/woooil/swift-book)에 공개되어 있습니다.
 
 ## 로그
 
