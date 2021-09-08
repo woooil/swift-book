@@ -162,7 +162,10 @@ layout: table_wrappers
             <!-- test -->
             <div class="post-nav">
               <div>
-                pages_list: {{pages_list}}
+                page titles:
+                {% for page in pages_list %}
+                  <div>{{page.title}}</div>
+                {% endfor %}
                 {% if page.previous.url %}
                 <a href="{{page.previous.url}}">&laquo;&nbsp;{{page.previous.title}}</a>
                 {% endif %}
