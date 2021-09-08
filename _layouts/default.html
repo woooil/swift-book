@@ -172,7 +172,7 @@ layout: table_wrappers
 
               {% if items.size > 1 %}
                 {% for item in items %}
-                  <div>{{item.nav_order}}</div>
+                  <div>{{item.nav_order}}, {{item.nav_order | minus: 1}}, {{(item.nav_order | to_integer) | minus:1 }}</div>
                   {% if (item.nav_order | to_integer) == (page.nav_order | to_integer) | minus: 1 %}
                     {% assign prev = item %}
                   {% endif %}
