@@ -164,9 +164,9 @@ layout: table_wrappers
               <div>
                 page titles:
                 {% for node in pages_list %}
-                  {% if node.nav_order and page.nav_order and node.parent and page.parent and node.parent == page.parent %}
+                  {% if node.nav_order and page.nav_order and node.parent and page.parent %}
                     <div>{{node.title}}</div>
-                    {% if node.nav_order = page.nav_order + 1 %}
+                    {% if node.parent == page.parent and node.nav_order == page.nav_order + 1 %}
                       <span>wow {{node.title}}</span>
                     {% endif %}
                   {% endif %}
