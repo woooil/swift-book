@@ -1,6 +1,6 @@
 # 소개
 
-이 전자책은 [The Swift Programming Language](https://docs.swift.org/swift-book/)의 한국어 번역본입니다. 번역에 관한 자세한 정보는 [번역 지침](more/translation-guideline.md)을 확인해주세요.
+이 전자책은 [The Swift Programming Language](https://docs.swift.org/swift-book/)의 한국어 번역본입니다. 번역에 관한 자세한 정보는 [번역 지침](more/translation-guideline)을 확인해주세요.
 
 ## 전자책
 

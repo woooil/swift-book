@@ -91,10 +91,10 @@ heading_anchors: true
 
 # Aux links for the upper right navigation
 aux_links:
+  "안내":
+    - "info"
   "GitHub 저장소":
     - "https://github.com/woooil/swift-book"
-  "안내":
-    - "info.md"
 
 
 # Makes Aux links open in a new tab. Default is false
