@@ -159,18 +159,15 @@ layout: table_wrappers
             {% if site.back_to_top %}
               <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
             {% endif %}
-            <!-- test -->
             <div class="post-nav">
               {%- assign items_raw = site.pages
                     | where_exp:"item", "item.nav_order != nil" -%}
               {%- assign items = items_raw
                     | where_exp:"item", "item.parent != nil" -%}
-
               {%- assign group = items_raw
                     | where_exp:"item", "item.parent == page.parent" -%}
               {% assign prev_order = page.nav_order | minus: 1 %}
               {% assign next_order = page.nav_order | plus: 1 %}
-              {{ page.nav_order|minus: 1}}
 
               {% if group.size > 1 %}
                 {% for item in group %}
@@ -188,7 +185,7 @@ layout: table_wrappers
                     <a href="{{ prev.url | absolute_url}}" class="prev" title="{{ prev.title }}">&lt; {{ prev.title }}</a>
                   {% endif %}
                   {% if prev and next %}
-                    <span> | </span>
+                    <span>   |   </span>
                   {% endif %}
                   {% if next %}
                     <a href="{{ next.url | absolute_url}}" class="next" title="{{ next.title }}">{{ next.title }} &gt;</a>
@@ -196,7 +193,6 @@ layout: table_wrappers
                 </p>
               {% endif %}
             </div>
-            <!-- test -->
 
             {{ footer_custom }}
 
@@ -233,7 +229,7 @@ layout: table_wrappers
         </a>
       {% endif %}
 
-      <div class="search-overlay"></div>
+      <!-- <div class="search-overlay"></div> -->
     {% endif %}
   </div>
 </body>
