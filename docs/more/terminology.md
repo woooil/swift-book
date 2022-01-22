@@ -276,3 +276,7 @@ encode: 인코딩하다
 code unit: 코드 단위
 ascii: 아스키
 set: 집합
+item: 원소
+insert: 삽입하다
+iterate: 반복하다
+hash: 해시
