@@ -279,6 +279,58 @@ Swift의 모든 기초 자료형(`String`, `Int`, `Double`, `Bool` 등)은 기�
 > 
 > 직접 정의한 자료형도 집합의 값이나 딕셔너리의 키의 자료형으로 사용할 수 있습니다. 자료형이 Swift의 표준 라이브러리에서 정하는 `Hashable` 프로토콜을 따르도록 하세요. `hash(into:)` 메서드를 구현하는 자세한 방법은 [해시 가능(영문)](https://developer.apple.com/documentation/swift/hashable)을 참고하세요. 프로토콜을 따르도록 하는 방법은 [프로토콜](protocols.md)을 참고하세요.
 
+### 집합형 문법
+
+Swift 집합의 자료형은 집합이 저장할 수 있는 자료형을 `Element`라고 했을 때, `Set<Element>`이라고 표기합니다. 배열과 다르게 집합은 이에 대한 축약형이 없습니다.
+
+### 빈 집합 생성 및 초기화
+
+이니셜라이저 문법으로 특정 자료형의 비어 있는 집합을 생성할 수 있습니다.
+
+```swift
+var letters = Set<Character>()
+print("letters is of type Set<Character> with \(letters.count) items.")
+// "letters is of type Set<Character> with 0 items." 출력
+```
+
+> **참고**
+> 
+> 이니셜라이저의 자료형으로부터 `letters` 변수의 자료형이 `Set<Character>`으로 추론됩니다.
+
+함수의 인자나 이전에 명시된 자료형 등으로 인해 이미 자료형에 대한 정보가 알려져 있다면, 빈 배열 리터럴로 비어 있는 집합을 만들 수도 있습니다.
+
+```swift
+letters.insert("a")
+// letters는 이제 Character형의 값 하나를 가집니다.
+letters = []
+// letters는 이제 빈 집합이지만, 자료형은 여전히 Set<Character>입니다.
+```
+
+### 배열 리터럴로 집합 생성
+
+배열 리터럴을 이용하면 하나 이상의 값들을 가진 집합을 간단히 초기화할 수 있습니다.
+
+아래 예시는 `String` 값들을 저장하는 집합 `favoriteGenres`를 생성하는 코드를 보여줍니다.
+
+```swift
+var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
+// favoriteGenres는 세 개의 초기 원소를 가진 채 초기화됩니다.
+```
+
+`favoriteGenres` 변수는 "`String` 값들의 집합", 즉 `Set<String>`으로 선언됩니다. 여기서 값의 자료형이 `String`으로 특정되었으므로 집합은 `String` 값**만** 저장할 수 있습니다. `favoriteGenres` 집합은 배열 리터럴에 적힌 세 `String` 값(`"Rock"`, `"Classical"`, `"Hip hop"`)으로 초기화됩니다.
+
+> **참고**
+> 
+> `favoriteGenres`는 아래 예시에서 가지고 있는 원소가 늘어나거나 줄어들기 때문에 (`let`을 사용한) 상수가 아닌 (`var`를 사용한) 변수로 선언되었습니다.
+
+변수 리터럴만으로는 집합형이라는 사실을 추론할 수 없으므로 `Set`이 명시적으로 선언되어야 합니다. 그러나 Swift의 자료형 추론 덕분에, 하나의 자료형만으로 이루어진 배열 리터럴로 집합을 초기화한다면 원소의 자료형은 표기하지 않아도 됩니다. `favoriteGenres`의 초기화도 더 짧게 줄일 수 있습니다.
+
+```swift
+var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
+```
+
+배열 리터럴의 값들이 모두 동일한 자료형이므로 Swift는 `Set<String>`이 `favoriteGenres` 변수의 알맞은 자료형이라고 추론합니다.
+
 
 
 
