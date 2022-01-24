@@ -48,7 +48,7 @@ Swift의 배열, 집합, 딕셔너리는 저장할 수 있는 값과 키의 자�
 > 
 > `Array`를 Foundation과 Cocoa와 함께 사용하려면 [Array와 NSArray의 연결(영문)](https://developer.apple.com/documentation/swift/array#2846730)을 참고하세요.
 
-### 배열형의 축약형 문법
+### 배열형 문법의 축약
 
 Swift 배열의 자료형의 완전한 표기법은 `Array<Element>`입니다. (단, `Element`는 배열이 저장할 수 있는 값의 자료형) 그렇지만 배열형을 축약형인 `[Element]`으로 적어도 됩니다. 두 형식 모두 기능적으로는 동등하지만 축약형이 일반적으로 더 선호됩니다. 이 문서에서도 축약형을 계속 사용합니다.
 
@@ -96,7 +96,7 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
 
 ### 배열 리터럴을 이용한 배열 성성
 
-**배열 리터럴**을 이용해서 배열을 초기화할 수도 있습니다. 배열 리터럴은 하나 이상의 값들로 간편하게 배열 컬렉션을 작성하는 방법입니다. 값들을 쉼표로 분리하여 적고 대괄호로 감싸 작성합니다.
+**배열 리터럴**을 이용해서 배열을 초기화할 수도 있습니다. 배열 리터럴은 하나 이상의 값들로 배열 컬렉션을 작성하는 축약형 방법입니다. 값들을 쉼표로 분리하여 적고 대괄호로 감싸 작성합니다.
 
 ```swift
 [value 1, value 2, value 3]
@@ -125,7 +125,7 @@ var shoppingList = ["Eggs", "Milk"]
 
 배열 리터럴의 값들이 모두 같은 자료형이므로 Swift는 `shoppingList` 변수의 자료형으로 `[String]`이 알맞다고 추론할 수 있습니다.
 
-### 배열에의 접급과 배열 수정
+### 배열에의 접근과 배열 수정
 
 배열에 접근하거나 배열을 수정할 때는 메서드나 프로퍼티를 이용하거나 첨자 문법을 사용합니다.
 
@@ -136,7 +136,7 @@ print("The shopping list contatins \(shoppingList.count) items.")
 // "The shopping list contains 2 items." 출력
 ```
 
-불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 가집니다.
+불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 제시합니다.
 
 ```swift
 if shoppingList.isEmpty {
@@ -308,7 +308,7 @@ letters = []
 
 ### 배열 리터럴로 집합 생성
 
-배열 리터럴을 이용하면 하나 이상의 값들을 가진 집합을 간단히 초기화할 수 있습니다.
+배열 리터럴을 축약형으로 이용하여 하나 이상의 값들을 가진 집합을 초기화할 수 있습니다.
 
 아래 예시는 `String` 값들을 저장하는 집합 `favoriteGenres`를 생성하는 코드를 보여줍니다.
 
@@ -331,10 +331,326 @@ var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
 
 배열 리터럴의 값들이 모두 동일한 자료형이므로 Swift는 `Set<String>`이 `favoriteGenres` 변수의 알맞은 자료형이라고 추론합니다.
 
+### 집합에의 접근과 수정
 
+집합이 가진 메서드와 프로퍼티로 집합에 접근하고 집합을 수정할 수 있습니다.
 
+집합이 가진 원소의 개수를 알아내기 위해서는 읽기 전용 프로퍼티인 `count`를 사용하세요.
 
+```swift
+print("I have \(favoriteGenres.count) favorite music genres.")
+// "I have 3 favorite music genres." 출력
+```
 
+불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 제시합니다.
 
+```swift
+if favoriteGenres.isEmpty {
+    print("As far as music goes, I'm not pinky.")
+} else {
+    print("I have particular music preferences.")
+}
+// "I have particular music preferences." 출력
+```
 
-wip...!!
+`insert(_:)` 메서드를 호출하여 집합에 새로운 원소를 추가할 수 있습니다.
+
+```swift
+favoriteGenres.insert("Jazz")
+// favoriteGenres는 이제 4개의 원소를 가집니다.
+```
+
+`remove(_:)` 메서드는 집합에서 원소를 제거하는 역할을 합니다. 제거하려는 원소가 집합에 있다면 제거 후 그 값을 반환하며, 집합에 없는 원소를 제거하려 한다면 `nil`을 반환합니다. `removeAll()` 메서드는 집합의 모든 원소를 제거합니다.
+
+```swift
+if let removedGenre = favoriteGenres.remove("Rock") {
+    print("\(removedGenre)? I'm over it.")
+} else {
+    print("I never much cared for that.")
+}
+// "Rock? I'm over it." 출력
+```
+
+집합이 특정 원소를 포함하고 있는지 검사하려면 `contains(_:)` 메서드를 사용하세요.
+
+```swift
+if favoriteGenres.contains("Funk") {
+    print("I get up on the good foot.")
+} else {
+    print("It's too funcky in here.")
+}
+// "It's too funky in here." 출력
+```
+
+### 집합 반복
+
+`for`-`in` 반복문으로 집합이 가진 원소들을 반복할 수 있습니다.
+
+```swift
+for genre in favoriteGenres {
+    print("\(genre)")
+}
+// Classical
+// Jazz
+// Hiphop
+```
+
+`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+
+Swift의 `Set`형에는 정해진 순서가 없습니다. 집합의 원소들을 특정한 순서로 반복하려면 `sorted()` 메서드를 사용하세요. `sorted()` 메서드는 집합의 원소들을 `<` 연산자에 따라 정렬한 배열을 반환합니다.
+
+```swift
+for genre in favoriteGenres.sorted() {
+    print("\(genre)")
+}
+// Classical
+// Hip hop
+// Jazz
+```
+
+## 집합 연산
+
+기초적인 집합 연산에는 두 집합을 합치거나, 두 집합이 공통으로 가지는 원소를 구분하거나, 두 집합의 원소가 전부 동일한지, 일부만 동일한지, 하나도 같지 않은지 등을 판단하는 연산들이 있습니다.
+
+### 집합 연산 기초
+
+아래 그림은 두 집합 `a`와 `b` 에 대한 여러 집합 연산들의 결과를 어두운 영역으로써 나타내고 있습니다.
+
+![](../../assets/images/setVennDiagram.png)
+
+* `intersection(_:)` 메서드는 두 집합에 모두 포함된 원소들로만 이루어진 새로운 집합을 만듭니다.
+* `symmetricDifference(_:)` 메서드는 두 집합 중 정확히 한 집합에만 포함된 원소들로 이루어진 새로운 집합을 만듭니다.
+* `union(_:)` 메서드는 두 집합에 포함된 원소들을 모두 포함하는 새로운 집합을 만듭니다.
+* `subtracting(_:)` 메서드는 전달된 집합에는 없는 원소들로만 이루어진 새로운 집합을 만듭니다.
+
+```swift
+let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+oddDigits.union(evenDigits).sorted()
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+oddDigits.intersection(evenDigits).sorted()
+// []
+oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+// [1, 9]
+oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
+// [1, 2, 9]
+```
+
+### 집합의 포함 관계와 동등성
+
+아래 그림은 세 집합 `a`, `b`, `c`이 서로 원소를 공유하며 생기는 겹친 영역을 보여줍니다. 집합 `a`가 집합 `b`의 모든 원소를 포함하므로 `a`는 `b`의 **초집합**이라고 합니다. 반대로 집합 `b`의 모든 원소가 집합 `a`에 포함되어 있으므로 `b`는 `a`의 **부분집합**이라고 합니다. 집합 `b`와 집합 `c`는 공통으로 가지는 원소가 없으므로 **서로소**라고 합니다.
+
+![](../../assets/images/setEulerDiagram.png)
+
+* 동등 연산자(`==`)는 두 집합이 모두 같은 원소를 가지고 있는지 판단합니다.
+* `isSubset(of:)` 메서드는 집합의 모든 원소가 전달된 집합에 포함되는지 판단합니다.
+* `isSuperset(of:)` 메서드는 집합이 전달된 집합의 모든 원소를 포함하는지 판단합니다.
+* `isStrictSubset(of:)`과 `isStrictSuperset(of:)` 메서드는 각각 집합이 전달된 집합과 같지 않으면서 부분집합인지, 초집합인지 판단합니다.
+* `isDisjoint(with:)` 메서드는 두 집합이 공통으로 가지는 원소가 없는지 판단합니다.
+
+```swift
+let houseAnimals: Set = ["🐶", "🐱"]
+let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+let cityAnimals: Set = ["🐦", "🐭"]
+
+houseAnimals.isSubset(of: farmAnimals)
+// true
+farmAnimals.isSuperset(of: houseAnimals)
+// true
+farmAnimals.isDisjoint(with: cityAnimals)
+// true
+```
+
+## 딕셔너리
+
+**딕셔너리**는 정해진 자료형의 키와 정해진 자료형의 값들의 조합을 정해진 순서 없이 컬렉션으로 저장합니다. 각각의 값들은 고유의 **키**와 연관됩니다. 여기서 키는 딕셔너리에서 그 값에 대응하는 식별자로서 역할합니다. 배열의 원소들과 다르게 딕셔너리의 원소들에는 정해진 순서가 없습니다. 식별자를 따라 값을 찾아야 할 때 딕셔너리를 사용합니다. 실제 세계에서 사전이 특정 단어의 정의를 찾는 데 쓰이는 것과 비슷합니다.
+
+> Swift의 `Dictionary`형은 Foundation의 `NSDictionary` 클래스와 연결됩니다.
+> 
+> `Dictionary`를 Foundation과 Cocoa와 함께 사용하려면 [Dictionary와 NSDictionary의 연결(영문)](https://developer.apple.com/documentation/swift/dictionary#2846239)을 참고하세요.
+
+### 딕셔너리형 문법의 축약
+
+Swift의 딕셔너리형은 `Key`가 저장하려는 키의 자료형, `Value`가 저장하려는 값의 자료형이라고 할 때, `Dictionary<Key, Value>`라고 적을 수 있습니다.
+
+> **참고**
+> 
+> 집합에서 값들의 자료형과 마찬가지로 `Key`형은 반드시 `Hashable` 프로토콜을 준수해야 합니다.
+
+딕셔너리의 자료형은 단축형으로서 `[Key: Value]`로 적을 수도 있습니다. 두 형태가 기능적으로는 동일하지만 일반적으로 축약형이 더 선호되며, 여기서도 딕셔너리의 형을 이야기할 때 축약형을 사용합니다. 
+
+### 빈 딕셔너리 생성
+
+배열과 마찬가지로 이니셜라이저 문법을 사용하면 특정 자료형의 비어 있는 `Dictionary`를 만들 수 있습니다.
+
+```swift
+var namesOfIntegers: [Int: String] = [:]
+// namesOfIntegers는 이제 비어 있는 [Int: String] 딕셔너리입니다.
+```
+
+이 예시에서는 정수 값에 사람이 읽을 수 있는 이름을 붙이기 위해 `[Int: String]`형의 빈 딕셔너리를 만들고 있습니다. 키는 `Int`형이고 값은 `String`형입니다.
+
+이미 자료형에 대한 정보가 주어져 있다면, 빈 배열 리터럴 `[:]`(콜론을 대괄호로 감싼 형태)로 비어 있는 배열을 만들 수 있습니다.
+
+```swift
+namesOfIntegers[16] = "sixteen"
+// namesOfIntegers는 이제 1개의 키-값 쌍을 가집니다.
+namesOfIntegers = [:]
+// namesOfIntgers는 다시 비어 있는 [Int: String]이 됩니다.
+```
+
+### 딕셔너리 리터럴로 딕셔너리 생성
+
+딕셔너리는 앞서 본 배열 리터럴과 비슷한 문법을 가진 **딕셔너리 리터럴**로 초기화할 수 있습니다. 딕셔너리 리터럴은 하나 이상의 키-값 쌍을 `Dictionary` 컬렉션으로 만드는 축약형 문법입니다.
+
+**키-값 쌍**은 키 하나와 값 하나의 조합입니다. 딕셔너리 리터럴에서 각각의 키-값 쌍의 키와 값은 콜론으로 구분됩니다. 키-값 쌍들은 배열처럼 쉼표로 구분하고 전체를 대괄호로 감쌉니다.
+
+```swift
+[key 1: value 1, key 2: value 2, key 3: value 3]
+```
+
+아래 예시는 국제 공항들의 이름을 저장하는 딕셔너리를 만들고 있습니다. 여기서 키는 세 글자로 된 IATA(국제항공운송협회) 코드이고, 값은 공항의 이름이 됩니다.
+
+```swift
+var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+```
+
+`airports` 딕셔너리는 `[String: String]` 형으로 선언됩니다. 키도 `String`형, 값도 `String`형인 `Dictionary`라는 뜻입니다.
+
+> **참고**
+> 
+> 아래 예시에서 공항이 더 추가될 수 있으므로 `airports` 딕셔너리는 (`let`을 사용한) 상수가 아닌 (`var`를 사용한) 변수로 선언됩니다.
+
+`airports` 딕셔너리는 두 개의 키-값 쌍을 가진 딕셔너리 리터럴로 초기화됩니다. 첫 번째 쌍은 키가 `"YYZ"`, 값이 `"Toronto Pearson"`이고, 두 번째 쌍은 키가 `"DUB"`, 값이 `"Dublin"`입니다.
+
+이 딕셔너리 리터럴은 두 `String: String` 쌍을 가지고 있습니다. 이 키-값 형은 (`String` 키와 `String` 값만 저장할 수 있는) `airports` 변수 선언에 부합합니다. 따라서 이 딕셔너리 리터럴로 `airports` 딕셔너리를 두 원소로 초기화하는 것이 가능합니다.
+
+배열에서와 마찬가지로, 딕셔너리 리터럴의 키와 값들이 각각 하나의 자료형으로 이루어져 있다면 이 리터럴로 딕셔너리를 초기화할 때 자료형을 명시하지 않아도 됩니다. `airports`의 초기화는 다음처럼 더 짧아질 수 있습니다.
+
+```swift
+var airports = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+```
+
+리터럴의 모든 키가 자료형이 서로 같으며, 모든 값들도 자료형이 서로 같으므로 Swift는 `[String: String]`이 `airports` 딕셔너리의 자료형으로 적절하다고 추론합니다.
+
+### 딕셔너리에의 접근과 수정
+
+딕셔너리가 가진 메서드나 프로퍼티, 첨자 문법으로 딕셔너리에 접근하고 딕셔너리를 수정할 수 있습니다.
+
+배열에서처럼 `Dictionary`의 읽기 전용 프로퍼티인 `count`를 검사하면 딕셔너리가 가진 원소의 수를 알아낼 수 있습니다.
+
+```swift
+print("The airports dictionary contains \(airports.count) items.")
+// "The airports dictionary contains 2 items." 출력
+```
+
+불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 제시합니다.
+
+```swift
+if airports.isEmpty {
+    print("The airports dictionary is empty.")
+} else {
+    print("The airports dictionary isn't empty.")
+}
+// "The airports dictionary isn't empty." 출력
+```
+
+첨자 문법으로 딕셔너리에 새 원소를 추가할 수 있습니다. 적절한 자료형의 새로운 키를 첨자 인덱스로 사용하고 적절한 자료형의 새로운 값을 할당하세요.
+
+```swift
+airports["LHR"] = "London"
+// airports 딕셔너리는 이제 3개의 원소를 가집니다.
+```
+
+특정 키에 연관된 값을 바꾸는 데 첨자 문법을 사용할 수도 있습니다.
+
+```swift
+airports["LHR"] = "London Heathrow"
+// "LHR"에 대한 값이 "London Heathrow"으로 바뀝니다.
+```
+
+첨자 말고도 딕셔너리의 `updateValue(_:forKey:)` 메서드로도 특정 키에 대한 값을 설정하거나 업데이트할 수 있습니다. 첨자 예시에서와 마찬가지로, `updateValue(_:forKey:)` 메서드도 키가 존재하지 않으면 키에 대한 값을 설정하고, 키가 이미 존재하면 값을 업데이트합니다. 그러나 첨자와 다르게 `updateValue(_:forKey:)` 메서드는 업데이트 이후에 **기존** 값을 반환합니다. 이로써 업데이트가 일어났는지 여부를 검사할 수 있습니다.
+
+`updateValue(_:forKey:)` 메서드는 딕셔너리의 값의 자료형에 대한 옵셔널 값을 반환합니다. 예를 들어, `String` 값을 저장하는 딕셔너리에서 이 메서드는 `String?` 즉, "옵셔널 `String`" 값을 반환합니다. 이 옵셔널 값은 업데이트 전에 키가 존재했다면 그 키에 대한 기존 값을 감싸고, 키가 존재하지 않았다면 `nil`을 반환합니다.
+
+```swift
+if let oldValue = ariports.updateValue("Dublin Airport", forKey: "DUB") {
+    print("The old value for DUB was \(oldValue).")
+}
+// "The old value for DUB was Dublin." 출력
+```
+
+특정 키에 대한 값을 얻는 데에도 첨자 문법을 사용할 수 있습니다. 값이 없는 키를 요청할 수도 있으므로 딕셔너리의 첨자는 딕셔너리의 값의 자료형에 대한 옵셔널 값을 반환합니다. 만약 딕셔너리가 요청한 키에 대한 값을 가진다면 그 키에 대한 값을 감싸는 옵셔널 값을 반환합니다. 그렇지 않다면 첨자는 `nil`을 반환합니다.
+
+```swift
+if let airportName = airports["DUB"] {
+    print("The name of the airport is \(airportName).")
+} else {
+    print("That airport isn't in the airports dictionary.")
+}
+// "The name of the airport is DUblin Airport." 출력
+```
+
+첨자 문법을 사용해서 특정 키에 `nil` 값을 할당하면 그 키-값 쌍은 딕셔너리에서 지워집니다.
+
+```swift
+airports["APL"] = "Apple Internaional"
+// "Apple International"은 APL의 실제 공항이 아니므로 지우도록 합니다.
+airports["APL"] = nil
+// APL은 이제 딕셔너리에서 지워집니다.
+```
+
+`removeValue(forKey:)` 메서드로도 딕셔너리에서 키-값 쌍을 지울 수 있습니다. 이 메서드는 만약 해당 쌍이 존재한다면 쌍을 지운 후 그 값을 반환하고, 존재하지 않는다면 `nil`을 반환합니다.
+
+```swift
+if let removedValue = airports.removeValue(forKey: "DUB") {
+    print("The removed airport's name is \(removedValue).")
+} else {
+    print("The airports dictionary doesn't contain a value for DUB.")
+}
+// "The removed airport's name is Dublin Airport." 출력
+```
+
+### 딕셔너리 반복
+
+`for`-`in` 반복문으로 딕셔너리의 키-값 쌍을 반복할 수 있습니다. 딕셔너리의 각각의 원소는 `(key, value)` 튜플로 반환되므로 이 튜플의 원소들을 임시 상수나 변수로 분해하면 됩니다.
+
+```swift
+for (airportCode, airportName) in airports {
+    print("\(airportCode): \(airportName)")
+}
+// LHR: London Heathrow
+// YYZ: Toronto Pearson
+```
+
+`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+
+딕셔너리의 `keys`, `values` 프로퍼티에 접근하면 딕셔너리의 키나 값으로 이루어진 반복 가능한 컬렉션을 얻을 수 있습니다.
+
+```swift
+for airportCode in airports.keys {
+    print("Airport code: \(airportCode)")
+}
+// Airport code: LHR
+// Airport code: YYZ
+
+for airportName in airports.values {
+    print("Airport name: \(airportName)")
+}
+// Airport name: London Heathrow
+// Airport name: Toronto Pearson
+```
+
+`Array` 인스턴스를 받는 API에서 딕셔너리의 키나 값들을 사용해야 한다면, `keys`나 `values` 프로퍼티로 새로운 배열을 초기화하세요.
+
+```swift
+let airportCodes = [String](airports.keys)
+// airportCode은 ["LHR", "YYZ"]입니다.
+
+let airportNames = [String](airports.values)
+// airportNames는 ["London Heathrow", "Toronto Pearson"]입니다.
+```
+
+Swift의 `Dictionary`형에는 정해진 순서가 없습니다. 키나 값을 특정한 순서로 반복하려면 `keys`나 `values` 프로퍼티에 대해 `sorted()` 메서드를 사용하세요.

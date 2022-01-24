@@ -280,3 +280,9 @@ item: 원소
 insert: 삽입하다
 iterate: 반복하다
 hash: 해시
+read-only: 읽기 전용
+membership: 포함 관계
+superset: 초집합
+subset: 부분집합
+disjoint: 서로소
+shorthand: 축약형
