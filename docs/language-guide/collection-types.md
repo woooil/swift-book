@@ -125,7 +125,7 @@ var shoppingList = ["Eggs", "Milk"]
 
 배열 리터럴의 값들이 모두 같은 자료형이므로 Swift는 `shoppingList` 변수의 자료형으로 `[String]`이 알맞다고 추론할 수 있습니다.
 
-### 배열에의 접급과 배열 수정
+### 배열에의 접근과 배열 수정
 
 배열에 접근하거나 배열을 수정할 때는 메서드나 프로퍼티를 이용하거나 첨자 문법을 사용합니다.
 
@@ -136,7 +136,7 @@ print("The shopping list contatins \(shoppingList.count) items.")
 // "The shopping list contains 2 items." 출력
 ```
 
-불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 가집니다.
+불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 제시합니다.
 
 ```swift
 if shoppingList.isEmpty {
@@ -330,6 +330,142 @@ var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
 ```
 
 배열 리터럴의 값들이 모두 동일한 자료형이므로 Swift는 `Set<String>`이 `favoriteGenres` 변수의 알맞은 자료형이라고 추론합니다.
+
+### 집합에의 접근과 수정
+
+집합이 가진 메서드와 프로퍼티로 집합에 접근하고 집합을 수정할 수 있습니다.
+
+집합이 가진 원소의 개수를 알아내기 위해서는 읽기 전용 프로퍼티인 `count`를 사용하세요.
+
+```swift
+print("I have \(favoriteGenres.count) favorite music genres.")
+// "I have 3 favorite music genres." 출력
+```
+
+불형 프로퍼티인 `isEmpty`는 `count` 프로퍼티의 값이 `0`인지 검사하는 것과 같은 결과를 제시합니다.
+
+```swift
+if favoriteGenres.isEmpty {
+    print("As far as music goes, I'm not pinky.")
+} else {
+    print("I have particular music preferences.")
+}
+// "I have particular music preferences." 출력
+```
+
+`insert(_:)` 메서드를 호출하여 집합에 새로운 원소를 추가할 수 있습니다.
+
+```swift
+favoriteGenres.insert("Jazz")
+// favoriteGenres는 이제 4개의 원소를 가집니다.
+```
+
+`remove(_:)` 메서드는 집합에서 원소를 제거하는 역할을 합니다. 제거하려는 원소가 집합에 있다면 제거 후 그 값을 반환하며, 집합에 없는 원소를 제거하려 한다면 `nil`을 반환합니다. `removeAll()` 메서드는 집합의 모든 원소를 제거합니다.
+
+```swift
+if let removedGenre = favoriteGenres.remove("Rock") {
+    print("\(removedGenre)? I'm over it.")
+} else {
+    print("I never much cared for that.")
+}
+// "Rock? I'm over it." 출력
+```
+
+집합이 특정 원소를 포함하고 있는지 검사하려면 `contains(_:)` 메서드를 사용하세요.
+
+```swift
+if favoriteGenres.contains("Funk") {
+    print("I get up on the good foot.")
+} else {
+    print("It's too funcky in here.")
+}
+// "It's too funky in here." 출력
+```
+
+### 집합 반복
+
+`for`-`in` 반복문으로 집합이 가진 원소들을 반복할 수 있습니다.
+
+```swift
+for genre in favoriteGenres {
+    print("\(genre)")
+}
+// Classical
+// Jazz
+// Hiphop
+```
+
+`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+
+Swift의 `Set`형에는 정해진 순서가 없습니다. 집합의 원소들을 특정한 순서로 반복하려면 `sorted()` 메서드를 사용하세요. `sorted()` 메서드는 집합의 원소들을 `<` 연산자에 따라 정렬한 배열을 반환합니다.
+
+```swift
+for genre in favoriteGenres.sorted() {
+    print("\(genre)")
+}
+// Classical
+// Hip hop
+// Jazz
+```
+
+## 집합 연산
+
+기초적인 집합 연산에는 두 집합을 합치거나, 두 집합이 공통으로 가지는 원소를 구분하거나, 두 집합의 원소가 전부 동일한지, 일부만 동일한지, 하나도 같지 않은지 등을 판단하는 연산들이 있습니다.
+
+### 집합 연산 기초
+
+아래 그림은 두 집합 `a`와 `b` 에 대한 여러 집합 연산들의 결과를 어두운 영역으로써 나타내고 있습니다.
+
+![](../../assets/images/setVennDiagram.png)
+
+* `intersection(_:)` 메서드는 두 집합에 모두 포함된 원소들로만 이루어진 새로운 집합을 만듭니다.
+* `symmetricDifference(_:)` 메서드는 두 집합 중 정확히 한 집합에만 포함된 원소들로 이루어진 새로운 집합을 만듭니다.
+* `union(_:)` 메서드는 두 집합에 포함된 원소들을 모두 포함하는 새로운 집합을 만듭니다.
+* `subtracting(_:)` 메서드는 전달된 집합에는 없는 원소들로만 이루어진 새로운 집합을 만듭니다.
+
+```swift
+let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+oddDigits.union(evenDigits).sorted()
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+oddDigits.intersection(evenDigits).sorted()
+// []
+oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+// [1, 9]
+oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
+// [1, 2, 9]
+```
+
+### 집합의 포함 관계와 동등성
+
+아래 그림은 세 집합 `a`, `b`, `c`이 서로 원소를 공유하며 생기는 겹친 영역을 보여줍니다. 집합 `a`가 집합 `b`의 모든 원소를 포함하므로 `a`는 `b`의 **초집합**이라고 합니다. 반대로 집합 `b`의 모든 원소가 집합 `a`에 포함되어 있으므로 `b`는 `a`의 **부분집합**이라고 합니다. 집합 `b`와 집합 `c`는 공통으로 가지는 원소가 없으므로 **서로소**라고 합니다.
+
+![](../../assets/images/setEulerDiagram.png)
+
+* 동등 연산자(`==`)는 두 집합이 모두 같은 원소를 가지고 있는지 판단합니다.
+* `isSubset(of:)` 메서드는 집합의 모든 원소가 전달된 집합에 포함되는지 판단합니다.
+* `isSuperset(of:)` 메서드는 집합이 전달된 집합의 모든 원소를 포함하는지 판단합니다.
+* `isStrictSubset(of:)`과 `isStrictSuperset(of:)` 메서드는 각각 집합이 전달된 집합과 같지 않으면서 부분집합인지, 초집합인지 판단합니다.
+* `isDisjoint(with:)` 메서드는 두 집합이 공통으로 가지는 원소가 없는지 판단합니다.
+
+```swift
+let houseAnimals: Set = ["🐶", "🐱"]
+let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+let cityAnimals: Set = ["🐦", "🐭"]
+
+houseAnimals.isSubset(of: farmAnimals)
+// true
+farmAnimals.isSuperset(of: houseAnimals)
+// true
+farmAnimals.isDisjoint(with: cityAnimals)
+// true
+```
+
+## 딕셔너리
+
+
 
 
 

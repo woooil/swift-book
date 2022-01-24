@@ -280,3 +280,4 @@ item: 원소
 insert: 삽입하다
 iterate: 반복하다
 hash: 해시
+read-only: 읽기 전용
