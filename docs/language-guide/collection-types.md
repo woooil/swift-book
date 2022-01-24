@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 컬렉션형
-description: Collectio Types
+description: Collection Types
 parent: Swift 안내서
 nav_order: 4
 ---
