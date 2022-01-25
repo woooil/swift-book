@@ -286,3 +286,6 @@ superset: 초집합
 subset: 부분집합
 disjoint: 서로소
 shorthand: 축약형
+interval: 간격
+cast: 캐스트
+sequence: 순열

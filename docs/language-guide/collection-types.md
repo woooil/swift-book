@@ -257,7 +257,7 @@ for (index, value) in shoppingList.enumerated() {
 // Item 5: Bananas
 ```
 
-`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+`for`-`in` 반복문에 대해서는 [For-In 반복문](control-flow.md#For-In-반복문)을 참고하세요.
 
 ## 집합
 
@@ -395,7 +395,7 @@ for genre in favoriteGenres {
 // Hiphop
 ```
 
-`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+`for`-`in` 반복문에 대해서는 [For-In 반복문](control-flow.md#For-In-반복문)을 참고하세요.
 
 Swift의 `Set`형에는 정해진 순서가 없습니다. 집합의 원소들을 특정한 순서로 반복하려면 `sorted()` 메서드를 사용하세요. `sorted()` 메서드는 집합의 원소들을 `<` 연산자에 따라 정렬한 배열을 반환합니다.
 
@@ -625,7 +625,7 @@ for (airportCode, airportName) in airports {
 // YYZ: Toronto Pearson
 ```
 
-`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+`for`-`in` 반복문에 대해서는 [For-In 반복문](control-flow.md#For-In-반복문)을 참고하세요.
 
 딕셔너리의 `keys`, `values` 프로퍼티에 접근하면 딕셔너리의 키나 값으로 이루어진 반복 가능한 컬렉션을 얻을 수 있습니다.
 
