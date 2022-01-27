@@ -99,7 +99,7 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
 **배열 리터럴**을 이용해서 배열을 초기화할 수도 있습니다. 배열 리터럴은 하나 이상의 값들로 배열 컬렉션을 작성하는 축약형 방법입니다. 값들을 쉼표로 분리하여 적고 대괄호로 감싸 작성합니다.
 
 ```swift
-[value 1, value 2, value 3]
+[(value 1), (value 2), (value 3)]
 ```
 
 아래 예시에서는 `String` 값들을 저장하는 배열 `shoppingList`를 만들고 있습니다.
@@ -508,7 +508,7 @@ namesOfIntegers = [:]
 **키-값 쌍**은 키 하나와 값 하나의 조합입니다. 딕셔너리 리터럴에서 각각의 키-값 쌍의 키와 값은 콜론으로 구분됩니다. 키-값 쌍들은 배열처럼 쉼표로 구분하고 전체를 대괄호로 감쌉니다.
 
 ```swift
-[key 1: value 1, key 2: value 2, key 3: value 3]
+[(key 1): (value 1), (key 2): (value 2), (key 3): (value 3)]
 ```
 
 아래 예시는 국제 공항들의 이름을 저장하는 딕셔너리를 만들고 있습니다. 여기서 키는 세 글자로 된 IATA(국제항공운송협회) 코드이고, 값은 공항의 이름이 됩니다.

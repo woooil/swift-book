@@ -32,7 +32,7 @@ syntax: 문법
 library: 라이브러리
 type: 자료형
 type inference: 자료형 추론
-pattern matching: 패턴 매칭
+pattern matching: 패턴 일치
 Xcode: Xcode
 opaque type: 불투명형
 return: 반환하다
@@ -286,7 +286,12 @@ superset: 초집합
 subset: 부분집합
 disjoint: 서로소
 shorthand: 축약형
-interval: 간격
+interval: 구간
 cast: 캐스트
 sequence: 순열
 random number: 난수
+switching: 스위칭
+exhaustive: 포괄적인
+match: 일치하다 / 매치
+fallthrough: 계속
+compound: 혼합된

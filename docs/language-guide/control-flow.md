@@ -25,7 +25,7 @@ Swift는 다양한 제어 흐름 구문을 제공합니다. 작업을 여러 번
 
 Swift는 배열, 딕셔너리, 범위, 문자열 등을 쉽게 반복할 수 있도록 `for`-`in` 반복문도 제공합니다.
 
-Swift의 `switch` 구문은 C와 유사한 다른 언어들에서 사용되는 것보다 훨씬 강력합니다. 케이스는 간격 일치, 튜플, 특정 자료형으로의 캐스팅을 포함한 여러 패턴 매칭을 지원합니다. `switch` 케이스에서 매칭된 값은 임시 상수나 변수로서 케이스 몸체 내부에서 사용될 수 있습니다. 각각의 케이스마다 복잡한 매칭 조건도 `where` 절로 표현할 수 있습니다.
+Swift의 `switch` 구문은 C와 유사한 다른 언어들에서 사용되는 것보다 훨씬 강력합니다. 케이스는 구간 일치, 튜플, 특정 자료형으로의 캐스팅을 포함한 여러 패턴 일치를 지원합니다. `switch` 케이스에서 일치하는 값은 임시 상수나 변수로서 케이스 몸체 내부에서 사용될 수 있습니다. 각각의 케이스마다 복잡한 일치 조건도 `where` 절로 표현할 수 있습니다.
 
 ## For-In 반복문
 
@@ -134,8 +134,8 @@ for tickMark in stride(from: 3, through: hours, by: hourInterval) {
 `while` 반복문의 일반적인 형태는 이렇습니다.
 
 ```swift
-while condition {
-    statements
+while (condition) {
+    (statements)인
 }
 ```
 
@@ -208,8 +208,8 @@ print("Game over!")
 
 ```swift
 repeat {
-    statements
-} while condition
+    (statements)
+} while (condition)
 ```
 
 다시 뱀 사다리 게임을 살펴봅시다. `while` 반복문 대신 `repeat`-`while` 반복문으로 작성할 수 있습니다. `finalSquare`, `board`, `square`, `diceRoll`의 값은 `while` 반복문에서와 동일한 방식으로 초기화됩니다.
@@ -246,9 +246,177 @@ print("Game over!")
 
 ## 조건문
 
+특정 조건에 따라 다른 코드 단위를 실행해야 할 때가 있습니다. 오류가 발생했을 때 따로 코드 단위를 실행시켜야 할 수도 있고, 어떤 값이 너무 작거나 클 때 메시지를 띄워야 할 수도 있습니다. 이럴 때, 코드 단위들을 **조건부로** 만들면 됩니다.
 
+Swift는 코드에 조건 분기를 추가하는 방법을 두 가지 제공합니다. 하나는 `if` 구문, 다른 하나는 `switch` 구문입니다. 일반적으로 가능한 결과의 가짓수가 몇 안 되는 단순한 조건문을 평가할 때 `if` 구문을 사용합니다. `switch` 구문은 가능한 가짓수가 많은 복잡한 조건문을 평가하거나, 평가해야 할 코드 분기를 패턴 일치를 사용하여 고를 때 적합합니다. 
 
+### If
 
+가장 단순한 `if` 구문은 `if` 조건문이 하나뿐인 경우입니다. 오직 그 조건이 `true`일 때만 내부의 문장들을 실행합니다.
+
+```swift
+var temperatureInFahrenheit = 30
+if temperatureInFahrenheit <= 32 {
+    print("It's very cold. Consider wearing a scarf.")
+}
+// "It's very cold. Consider wearing a scarf." 출력
+```
+
+이 예시는 온도가 화씨 `32`도(물의 어는점) 이하인지 검사합니다. 만약 그렇다면, 메시지가 출력됩니다. 그렇지 않다면 메시지는 출력되지 않고 `if` 구문의 닫는 괄호 다음의 코드가 이어집니다.
+
+`if` 구문에는 `if` 조건문이 `false`인 경우에 대해, **else 절**이라고 하는 다른 문장 단위를 추가할 수 있습니다. 이 문장들은 `else` 키워드로 표시됩니다.
+
+```swift
+temperatureInFahrenheit = 40
+if temperatureInFahrenheit <= 32 {
+    print("It's very cold. Consider wearing a scarf.")
+} else {
+    print("It's not that cold. Wear a t-shirt.")
+}
+// "It's not that cold. Wear a t-shirt." 출력
+```
+
+언제나 이 두 분기 중에 하나가 실행됩니다. 온도가 화씨 `40`도로 증가했으므로 더 이상 스카프를 둘러야 할 만큼 춥지 않습니다. 따라서 `else` 분기가 대신 실행됩니다.
+
+`if` 구문을 여러 개 연결해 더 다양한 절을 만들 수도 있습니다.
+
+```swift
+temperatureInFahrenheit = 90
+if temperatureInFahrenheit <= 32 {
+    print("It's very cold. Consider wearing a scarf.")
+} else if temperatureInFahrenheit >= 86 {
+    print("It's really warm. Don't forget to wear sunscreen.")
+} else {
+    print("It's not that cold. Wear a t-shirt.")
+}
+// "It's really warm. Don't forget to wear sunscreen." 출력
+```
+
+특히 따뜻한 온도에 응답하는 `if` 구문을 추가했습니다. 남아 있는 마지막 `else` 절은 너무 따뜻하거나 춥지 않은 모든 온도에 대해 응답을 출력합니다.
+
+그러나 마지막 `else` 절은 필수가 아니므로 조건들이 완전할 필요가 없다면 생략해도 됩니다.
+
+```swift
+temperatureInFahrenheit = 72
+if temperatureInFahrenheit <= 32 {
+    print("It's very cold. Consider wearing a scarf.")
+} else if temperatureInFahrenheit >= 86 {
+    print("It's really warm. Don't forget to wear sunscreen.")
+}
+```
+
+`if`나 `else if` 조건에 부합할 정도로 온도가 너무 춥거나 따뜻하지 않으므로 메시지가 출력되지 않습니다.
+
+### 스위치
+
+`switch` 구문은 주어진 값을 정해둔 패턴들과 일치하는지 비교합니다. 처음으로 일치하는 패턴에 따라 그에 대응하는 코드 단위를 실행합니다. `switch` 구문은 여러 상태에 대응해야 하는 `if` 구문에 대한 보완책입니다.
+
+`switch` 구문의 가장 간단한 형태는 값을 같은 자료형의 하나 이상의 값과 비교하는 것입니다.
+
+```swift
+switch (some value to consider) {
+case (value 1):
+    (respond to value 1)
+case (value 2), (value 3):
+    (respond to value 2 or 3)
+default:
+    (otherwise, do something else)
+}
+```
+
+모든 `switch` 구문은 `case` 키워드로 시작하는 여러 **케이스**로 이루어져 있습니다. Swift에서는 케이스마다 특정 값과 비교할 뿐만 아니라 더 복잡한 패턴 일치를 지정할 수 있습니다. 이 옵션들은 아래에서 소개될 예정입니다.
+
+`if` 구문의 몸체처럼 각각의 `case`도 개별적으로 실행되는 코드 분기입니다. `switch` 구문은 어느 분기를 선택할지 결정합니다. 이 과정을 주어진 값에 대한 **스위칭**이라고 합니다.
+
+모든 `switch` 구문은 반드시 **포괄적**이어야 합니다. 즉, 다루고 있는 자료형의 어떤 값이든 하나의 `switch` 케이스와 일치해야 합니다. 가능한 모든 값에 대해 케이스를 전부 제공하기 어렵다면, 명시적으로 다뤄지지 않는 모든 값을 처리할 기본 케이스를 정의하세요. 기본 케이스는 `default` 키워드로 나타내며, 항상 마지막에 나타나야 합니다.
+
+이 예시에서 `switch` 구문은 `someCharacter`라고 하는 소문자 하나를 다루고 있습니다.
+
+```swift
+let someCharacter: Character: "z"
+switch someCharacter {
+case "a":
+    print("THe first letter of the alphabet")
+case "z":
+    print("The last letter of the alphabet")
+default:
+    print("Some other character")
+}
+// "The last letter of the alphabet" 출력
+```
+
+`switch` 구문의 첫 번째 케이스는 첫 알파벳인 `a`와 일치하고, 두 번째 케이스는 마지막 알파벳인  `z`와 일치합니다. `switch`는 알파벳 뿐만 아니라 모든 문자에 대한 케이스를 가지고 있어야 하므로 이 `switch` 구문은 `a`나 `z` 이와의 모든 문자와 일치하는 `default` 케이스를 사용하고 있습니다. 이로써 `switch` 구문이 포괄적임이 보장됩니다.
+
+## 묵시적 계속의 부재
+
+C나 Objective-C의 `switch` 구문과 다르게 Swift의 `switch` 구문은 각각의 케이스가 끝나도 자동적으로 다음 케이스를 계속하지 않습니다. 대신 처음으로 일치하는 `switch` 케이스가 완료되는 대로 명시적인 `breack` 문장 없이도 `switch` 구문 전체가 종료됩니다. 이로써 `switch` 구문이 C에서보다 더 안전하고 사용하기 쉬워지며, 실수로 다른 `switch` 케이스까지 실행되는 것을 막습니다.
+
+> **참고**
+> 
+> Swift에서 `break`가 필요 없긴 하지만, 특정 케이스와 일치하는 경우를 무시하거나 일치한 케이스가 완전히 끝나기 전에 빠져나오는 데 `break`를 사용할 수 있습니다. 자세한 내용은 [스위치 구문에서의 Break](스위치-구문에서의-Break)를 참고하세요.
+
+모든 케이스의 몸체는 **반드시** 실행할 문장을 하나 이상 포함하고 있어야 합니다. 다음 코드는 첫 번째 케이스가 비어 있으므로 유효하지 못합니다.
+
+```swift
+let anotherCharacter: Character = "a"
+switch anotherCharacter {
+case "a": // 케이스 몸체가 비어 있으므로 무효
+case "A":
+    print("The letter A")
+default:
+    print("Not the letter A")
+}
+// 컴파일 시간 오류가 발생합니다.
+```
+
+C에서와 다르게 Swift에서는 이 `switch` 구문이 `"a"`와 `"A"` 모두와 일치하지 않습니다. 오히려 `case "a":`가 실행할 문장을 하나도 가지고 있지 않아 컴파일 시간 오류가 발생합니다. 실수로 인해 한 케이스에서 다른 케이스로 계속되는 경우를 피하고, 코드의 의도를 명확하게 해 더 안전해집니다.
+
+`"a"`와 `"A"` 모두와 일치하는 케이스 만들려면 두 값을 쉼표로 분리하여 혼합 케이스를 만드세요.
+
+```swift
+let anotherCharacter: Character = "a"
+switch anotherCharacter {
+case "a", "A":
+    print("The letter A")
+default:
+    print("Not the letter A")
+}
+// "The letter A" 출력
+```
+
+가독성을 위해 혼합 케이스를 여러 줄에 걸쳐 적어도 됩니다. 자세한 내용은 [혼합 케이스](혼합-케이스)를 참고하세요.
+
+> **참고**
+> 
+> 특정 `switch` 케이스 끝에서 명시적으로 계속하려면, [계속](계속)에 설명된 `fallthrough` 키워드를 사용하세요.
+
+## 구간 일치
+
+`switch` 케이스의 값이 구간에 포함되는지 검사할 수 있습니다. 아래 예시에서는 수 구간을 사용하여 어떤 크기의 수를 셀 때의 영어 표현을 계산하고 있습니다.
+
+```swift
+let approximateCount = 62
+let countedThings = "moons orbiting Saturn"
+let naturalCount: String
+switch approximateCount {
+case 0:
+    naturalCount = "no"
+case 1..<5:
+    naturalCount = "a few"
+case 5..<12:
+    naturalCount = "several"
+case 12..<100:
+    naturalCount = "dozens of"
+case 100..<1000:
+    naturalCount = "hundreds of"
+default:
+    naturalCount = "many"
+}
+print("There are \(naturalCount) \(countedThings).")
+// "There are dozens of moons orbiting Saturn." 출력
+```
+
+위 예시의 `switch` 구문에서는 `approximateCount`가 평가됩니다. 각각의 `case`는 이 값을 어떤 수나 구간과 비교합니다. `approximateCount`의 값이 12와 100 사이에 있으므로 `naturalCount`에 `"dozens of"`이라는 값이 할당되고 `switch` 구문이 종료됩니다.
 
 
 

@@ -584,8 +584,8 @@ if convertedNumber != nil {
 `if` 구문에서의 옵셔널 연결은 다음처럼 작성하세요.
 
 ```swift
-if let constantName = someOptional {
-    statements
+if let (constantName) = (someOptional) {
+    (statements)
 }
 ```
 
