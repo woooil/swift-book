@@ -295,3 +295,4 @@ exhaustive: 포괄적인
 match: 일치하다 / 매치
 fallthrough: 계속
 compound: 혼합된
+placeholder: 임시

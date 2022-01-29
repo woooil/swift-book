@@ -418,6 +418,68 @@ print("There are \(naturalCount) \(countedThings).")
 
 위 예시의 `switch` 구문에서는 `approximateCount`가 평가됩니다. 각각의 `case`는 이 값을 어떤 수나 구간과 비교합니다. `approximateCount`의 값이 12와 100 사이에 있으므로 `naturalCount`에 `"dozens of"`이라는 값이 할당되고 `switch` 구문이 종료됩니다.
 
+## 튜플
+
+튜플을 사용하면 같은 `switch` 구문에서 여러 값들을 검사할 수 있습니다. 튜플의 원소들은 저마다의 값이나 값의 구간과 비교됩니다. 와일드카드 패턴이라고도 부르는 밑줄 문자(`_`)는 모든 값들과 일치하게 됩니다.
+
+아래 예시에서는 `(Int, Int)`형의 단순한 튜플로 표현된 (x, y) 점을 받아 제시된 그래프 위에서의 위치에 따라 분류합니다.
+
+```swift
+let somePoint = (1, 1)
+switch somePoint {
+case (0, 0):
+    print("\(somePoint) is at the origin")
+case (_, 0):
+    print("\(somePoint) is on the x-axis")
+case (0, _):
+    print("\(somePoint) is on the y-axis")
+case (-2...2, -2...2):
+    print("\(somePoint) is inside the box")
+default:
+    print("\(somePoint) is outside the box")
+}
+// "(1, 1) is inside the box" 출력
+```
+
+![](../../assets/images/coordinateGraphSimple.png)
+
+`switch` 구문은 점이 원점 (0, 0)에 있는지, 빨간색 x축 위에 있는지, 주황색 y축 위에 있는지, 원점을 중심으로 하는 파란색 4x4 상자 안에 있는지, 아니면 상자 밖에 있는지 판단합니다.
+
+C와 다르게 Swift는 여러 `switch` 케이스에서 같은 값을 다루는 것을 허용합니다. 점 (0, 0)은 사실 예시에 나온 **네 가지** 케이스와 전부 일치합니다. 그러나 여러 케이스와 일치한다면, 항상 첫 번째로 일치하는 케이스가 사용됩니다. 점 (0, 0)은 `case (0, 0)`과 처음 일치하므로 다른 일치하는 케이스는 무시됩니다.
+
+## 값 연결
+
+일치하는 값을 임시 상수나 변수로 이름 붙이면 `switch` 케이스 몸체 안에서 값을 사용할 수 있습니다. 값들을 케이스 몸체 내부에서의 임시 상수나 변수에 연결하므로, 이를 **값 연결**이라고 부릅니다.
+
+아래 예시에서는 `(Int, Int)`형의 튜플로 표현된 (x, y) 점을 받아 제시된 그래프 위에서의 위치에 따라 분류합니다.
+
+```swift
+let anotherPoint = (2, 0)
+switch anotherPoint {
+case (let x, 0):
+    print("on the x-axis with an x value of \(x)")
+case (0, let y):
+    print("on the y-axis with a y value of \(y)")
+case let (x, y):
+    print("somewhere else at (\(x), \(y))")
+}
+\\ "on the x-axis with an x value of 2" 출력
+```
+
+![](../../assets/images/coordinateGraphMedium.png)
+
+`switch` 구문은 점이 빨간색 x축 위에 있는지, 주황색 y축 위에 있는지, 아니면 (두 축 위가 모두 아닌) 다른 곳에 있는지 결정합니다.
+
+세 `switch` 케이스는 `anotherPoint`로부터 하나 또는 두 개의 값을 임시로 받는 임시 상수 `x`와 `y`를 선언합니다. 첫 번째 케이스인 `case (let x, 0)`는 `y` 값이 `0`인 모든 점과 일치하며 그 점의 `x` 값을 임시 상수 `x`에 할당합니다. 마찬가지로 두 번째 케이스인 `case (0, let y)`는 `x` 값이 `0`인 모든 점과 일치하며 그 점이 `y` 값을 임시 상수 `y`에 할당합니다.
+
+임시 상수가 선언된 후에는 그 값을 케이스의 코드 단위 내부에서 사용할 수 있습니다. 여기서는 점이 분류된 결과를 출력하는 데 사용하고 있습니다.
+
+이 `switch` 구문은 `default` 케이스가 필요 없습니다. 마지막 케이스인 `case let (x, y)`가 모든 값과 일치할 수 있도록 두 개의 임시 상수로 이루어진 튜플을 선언하고 있습니다. `anotherPoint`는 언제나 두 개의 값으로 이루어진 튜플이므로 이 케이스가 남아 있는 모든 값들과 일치하며, 따라서 `switch` 구문을 포괄적으로 만드는 데 `default` 케이스가 필요하지 않습니다.
+
+## Where
+
+
+
 
 
 
