@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 컬렉션형
-description: Collectio Types
+description: Collection Types
 parent: Swift 안내서
 nav_order: 4
 ---
@@ -99,7 +99,7 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
 **배열 리터럴**을 이용해서 배열을 초기화할 수도 있습니다. 배열 리터럴은 하나 이상의 값들로 배열 컬렉션을 작성하는 축약형 방법입니다. 값들을 쉼표로 분리하여 적고 대괄호로 감싸 작성합니다.
 
 ```swift
-[value 1, value 2, value 3]
+[(value 1), (value 2), (value 3)]
 ```
 
 아래 예시에서는 `String` 값들을 저장하는 배열 `shoppingList`를 만들고 있습니다.
@@ -231,7 +231,7 @@ let apples = shoppingList.removeLast()
 
 ### 배열 반복
 
-`for`-`in` 반복문으로 배열의 모든 값들을 반복할 수 있습니다.
+`for`-`in`문으로 배열의 모든 값들을 반복할 수 있습니다.
 
 ```swift
 for item in shoppingList {
@@ -257,7 +257,7 @@ for (index, value) in shoppingList.enumerated() {
 // Item 5: Bananas
 ```
 
-`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+`for`-`in`문에 대해서는 [For-In문](control-flow.md#For-In문)을 참고하세요.
 
 ## 집합
 
@@ -384,7 +384,7 @@ if favoriteGenres.contains("Funk") {
 
 ### 집합 반복
 
-`for`-`in` 반복문으로 집합이 가진 원소들을 반복할 수 있습니다.
+`for`-`in`문으로 집합이 가진 원소들을 반복할 수 있습니다.
 
 ```swift
 for genre in favoriteGenres {
@@ -395,7 +395,7 @@ for genre in favoriteGenres {
 // Hiphop
 ```
 
-`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+`for`-`in`문에 대해서는 [For-In문](control-flow.md#For-In문)을 참고하세요.
 
 Swift의 `Set`형에는 정해진 순서가 없습니다. 집합의 원소들을 특정한 순서로 반복하려면 `sorted()` 메서드를 사용하세요. `sorted()` 메서드는 집합의 원소들을 `<` 연산자에 따라 정렬한 배열을 반환합니다.
 
@@ -508,7 +508,7 @@ namesOfIntegers = [:]
 **키-값 쌍**은 키 하나와 값 하나의 조합입니다. 딕셔너리 리터럴에서 각각의 키-값 쌍의 키와 값은 콜론으로 구분됩니다. 키-값 쌍들은 배열처럼 쉼표로 구분하고 전체를 대괄호로 감쌉니다.
 
 ```swift
-[key 1: value 1, key 2: value 2, key 3: value 3]
+[(key 1): (value 1), (key 2): (value 2), (key 3): (value 3)]
 ```
 
 아래 예시는 국제 공항들의 이름을 저장하는 딕셔너리를 만들고 있습니다. 여기서 키는 세 글자로 된 IATA(국제항공운송협회) 코드이고, 값은 공항의 이름이 됩니다.
@@ -615,7 +615,7 @@ if let removedValue = airports.removeValue(forKey: "DUB") {
 
 ### 딕셔너리 반복
 
-`for`-`in` 반복문으로 딕셔너리의 키-값 쌍을 반복할 수 있습니다. 딕셔너리의 각각의 원소는 `(key, value)` 튜플로 반환되므로 이 튜플의 원소들을 임시 상수나 변수로 분해하면 됩니다.
+`for`-`in`문으로 딕셔너리의 키-값 쌍을 반복할 수 있습니다. 딕셔너리의 각각의 원소는 `(key, value)` 튜플로 반환되므로 이 튜플의 원소들을 임시 상수나 변수로 분해하면 됩니다.
 
 ```swift
 for (airportCode, airportName) in airports {
@@ -625,7 +625,7 @@ for (airportCode, airportName) in airports {
 // YYZ: Toronto Pearson
 ```
 
-`for`-`in` 반복문에 대해서는 [For-in 반복문](control-flow.md#for-in-반복문)을 참고하세요.
+`for`-`in`문에 대해서는 [For-In문](control-flow.md#For-In문)을 참고하세요.
 
 딕셔너리의 `keys`, `values` 프로퍼티에 접근하면 딕셔너리의 키나 값으로 이루어진 반복 가능한 컬렉션을 얻을 수 있습니다.
 
