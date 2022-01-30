@@ -231,7 +231,7 @@ let apples = shoppingList.removeLast()
 
 ### 배열 반복
 
-`for`-`in` 반복문으로 배열의 모든 값들을 반복할 수 있습니다.
+`for`-`in`문으로 배열의 모든 값들을 반복할 수 있습니다.
 
 ```swift
 for item in shoppingList {
@@ -257,7 +257,7 @@ for (index, value) in shoppingList.enumerated() {
 // Item 5: Bananas
 ```
 
-`for`-`in` 반복문에 대해서는 [For-In 반복문](control-flow.md#For-In-반복문)을 참고하세요.
+`for`-`in`문에 대해서는 [For-In문](control-flow.md#For-In문)을 참고하세요.
 
 ## 집합
 
@@ -384,7 +384,7 @@ if favoriteGenres.contains("Funk") {
 
 ### 집합 반복
 
-`for`-`in` 반복문으로 집합이 가진 원소들을 반복할 수 있습니다.
+`for`-`in`문으로 집합이 가진 원소들을 반복할 수 있습니다.
 
 ```swift
 for genre in favoriteGenres {
@@ -395,7 +395,7 @@ for genre in favoriteGenres {
 // Hiphop
 ```
 
-`for`-`in` 반복문에 대해서는 [For-In 반복문](control-flow.md#For-In-반복문)을 참고하세요.
+`for`-`in`문에 대해서는 [For-In문](control-flow.md#For-In문)을 참고하세요.
 
 Swift의 `Set`형에는 정해진 순서가 없습니다. 집합의 원소들을 특정한 순서로 반복하려면 `sorted()` 메서드를 사용하세요. `sorted()` 메서드는 집합의 원소들을 `<` 연산자에 따라 정렬한 배열을 반환합니다.
 
@@ -615,7 +615,7 @@ if let removedValue = airports.removeValue(forKey: "DUB") {
 
 ### 딕셔너리 반복
 
-`for`-`in` 반복문으로 딕셔너리의 키-값 쌍을 반복할 수 있습니다. 딕셔너리의 각각의 원소는 `(key, value)` 튜플로 반환되므로 이 튜플의 원소들을 임시 상수나 변수로 분해하면 됩니다.
+`for`-`in`문으로 딕셔너리의 키-값 쌍을 반복할 수 있습니다. 딕셔너리의 각각의 원소는 `(key, value)` 튜플로 반환되므로 이 튜플의 원소들을 임시 상수나 변수로 분해하면 됩니다.
 
 ```swift
 for (airportCode, airportName) in airports {
@@ -625,7 +625,7 @@ for (airportCode, airportName) in airports {
 // YYZ: Toronto Pearson
 ```
 
-`for`-`in` 반복문에 대해서는 [For-In 반복문](control-flow.md#For-In-반복문)을 참고하세요.
+`for`-`in`문에 대해서는 [For-In문](control-flow.md#For-In문)을 참고하세요.
 
 딕셔너리의 `keys`, `values` 프로퍼티에 접근하면 딕셔너리의 키나 값으로 이루어진 반복 가능한 컬렉션을 얻을 수 있습니다.
 

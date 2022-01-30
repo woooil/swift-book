@@ -62,7 +62,7 @@ handling: 처리
 functionality: 기능
 global scope: 전역
 entry point: 시작 지점
-statement: 구문/문장
+statement: -문/구문
 semicolon: 세미콜론
 NOTE: 참고
 EXPERIMENT: 도전
@@ -93,7 +93,7 @@ argument: 인자/전달 인자
 control: 제어
 flow: 흐름
 conditional: 조건문
-loop: 반복문
+loop: 반복문/-문
 optional: 선택 사항
 brace: 중괄호
 body: 몸체
@@ -296,3 +296,8 @@ match: 일치하다 / 매치
 fallthrough: 계속
 compound: 혼합된
 placeholder: 임시
+control transfer statement: 제어 전달문
+label: 레이블/레이블하다
+valid: 유효하다
+list: 목록
+attribute: 속성
