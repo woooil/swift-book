@@ -30,7 +30,7 @@ optional: 옵셔널
 memory: 메모리
 syntax: 문법
 library: 라이브러리
-type: 자료형
+type: 자료형/-형
 type inference: 자료형 추론
 pattern matching: 패턴 일치
 Xcode: Xcode
@@ -75,7 +75,7 @@ explicitly: 명시적
 value: 값
 initial value: 초기 값
 colon: 콜론
-implicitly: 묵시적
+implicit: 묵시적인
 instance: 인스턴스
 paranthesis: 괄호
 backslash: 백슬래시
@@ -301,3 +301,9 @@ label: 레이블/레이블하다
 valid: 유효하다
 list: 목록
 attribute: 속성
+in-out: 인-아웃
+hyphen: 하이픈
+right angle bracket: 오른쪽 부등호
+message: 메시지
+variadic: 가변의
+ampersand: 앰퍼샌드
