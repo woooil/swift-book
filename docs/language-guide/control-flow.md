@@ -353,7 +353,7 @@ C나 Objective-C의 `switch`문과 다르게 Swift의 `switch`문은 각각의 �
 
 > **참고**
 > 
-> Swift에서 `break`가 필요 없긴 하지만, 특정 케이스와 일치하는 경우를 무시하거나 일치한 케이스가 완전히 끝나기 전에 빠져나오는 데 `break`를 사용할 수 있습니다. 자세한 내용은 [Switch문에서의 Break](#Switch문에서의-Break)를 참고하세요.
+> Swift에서 `break`가 필요 없긴 하지만, 특정 케이스와 일치하는 경우를 무시하거나 일치한 케이스가 완전히 끝나기 전에 빠져나오는 데 `break`를 사용할 수 있습니다. 자세한 내용은 [Switch문에서의 Break](#switch문에서의-break)를 참고하세요.
 
 모든 케이스의 몸체는 **반드시** 실행할 문장을 하나 이상 포함하고 있어야 합니다. 다음 코드는 첫 번째 케이스가 비어 있으므로 유효하지 못합니다.
 
@@ -388,7 +388,7 @@ default:
 
 > **참고**
 > 
-> 특정 `switch` 케이스 끝에서 명시적으로 계속하려면, [Fallthrough](#Fallthrough)에 설명된 `fallthrough` 키워드를 사용하세요.
+> 특정 `switch` 케이스 끝에서 명시적으로 계속하려면, [Fallthrough](#fallthrough)에 설명된 `fallthrough` 키워드를 사용하세요.
 
 ## 구간 일치
 
