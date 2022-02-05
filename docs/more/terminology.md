@@ -307,3 +307,10 @@ right angle bracket: 오른쪽 부등호
 message: 메시지
 variadic: 가변의
 ampersand: 앰퍼샌드
+capture: 포획하다
+closing over: 둘러싸기
+context: 주위 / 문맥
+inline: 인라인
+map: 대응하다
+member: 멤버
+strong reference cycle: 강한 순환 참조

@@ -157,7 +157,7 @@ layout: table_wrappers
           <hr>
           <footer>
             {% if site.back_to_top %}
-              <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
+              <p><a href="#top" id="back-to-top">맨 위로</a></p>
             {% endif %}
             <div class="post-nav">
               {%- assign items_raw = site.pages
@@ -221,15 +221,13 @@ layout: table_wrappers
       </div>
     </div>
 
-    {% if site.search_enabled != false %}
+    <!-- {% if site.search_enabled != false %}
       {% if site.search.button %}
         <a href="#" id="search-button" class="search-button">
           <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-search"></use></svg>
         </a>
       {% endif %}
-
-      <!-- <div class="search-overlay"></div> -->
-    {% endif %}
+    {% endif %} -->
   </div>
 </body>
 </html>
