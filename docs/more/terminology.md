@@ -312,3 +312,5 @@ closing over: 둘러싸기
 context: 주위 / 문맥
 inline: 인라인
 map: 대응하다
+member: 멤버
+strong reference cycle: 강한 순환 참조

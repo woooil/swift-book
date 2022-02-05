@@ -263,17 +263,238 @@ loadPicture(from: someServer) { picture in
 
 ## 갑 포획
 
+클로저는 정의된 곳 주위에서 상수나 변수를 **포획**할 수 있습니다. 상수나 변수가 처음 정의된 영역에서 벗어나더라도 클로저 몸체 안에서는 그 값들을 참조하고 수정할 수 있습니다.
 
+Swift에서 값을 포획할 수 있는 가장 간단한 클로저 형태는 다른 함수 몸체 내부에 작성하는 중첩 함수입니다. 중첩 함수는 감싸는 함수의 모든 인자와 그 함수에서 정의된 모든 상수와 변수를 포획할 수 있습니다.
 
+이 예시에서 함수 `makeIncrementer`는 `incrementer`라고 하는 중첩 함수를 가지고 있습니다. 중첩된 `incrementer()` 함수는 주위에서 두 값 `runningTotal`과 `amount`를 포획합니다. 이 값을 포획한 `incrementer`는 호출될 때마다 `runningTotal`을 `amount`만큼 증가시키는 클로저로서 `makeIncrementer`에 의해 반환됩니다.
 
+```swift
+func makeIncrementer(forIncrement amount: Int) -> () -> Int {
+    var runningTotal = 0
+    func incrementer() -> Int {
+        runningTotal += amount
+        return runningTotal
+    }
+    return incrementer
+}
+```
 
+`makeIncrementer`의 반환형은 `() -> Int`입니다. 즉, 단순 값이 아니라 **함수**를 반환합니다. 반환되는 함수는 매개 변수 없이 호출될 때마다 `Int` 값을 반환합니다. 함수가 다른 함수를 반환하는 것에 관해서는 [반환형으로서의 함수형](functions.md#반환형으로서의-함수형)을 참고하세요.
 
+`makeIncrementer(forIncrement:)` 함수는 `runningTotal`이라는 정수 변수를 정의하고 반환되는 증감자의 현재 실행 합계를 이 변수에 저장합니다. 변수는 처음에 `0`으로 초기화됩니다.
 
+`makeIncrementer(forIncrement:)` 함수는 인자 레이블이 `forIncrement`이고 매개 변수 이름이 `amount`인 `Int` 매개 변수 하나를 가집니다. 인자 값은 이 매개 변수로 전달되어 반환되는 `incrementer` 함수가 호출될 때마다 `runningTotal`을 얼마씩 증가시킬지 지정합니다. `makeIncrementer` 함수는 증가시키는 작업을 실제로 수행하는 중첩 함수 `incrementer`를 정의합니다. 이 함수는 단순히 `runningTotal`에 `amount`를 더해 그 결과를 반환합니다.
 
+중첩된 `incrementer()` 함수를 별개로 생각하면 이상해 보일 수 있습니다.
 
+```swift
+func incrementer() -> Int {
+    runningTotal += amount
+    return runningTotal
+}
+```
 
+`incrementer()` 함수는 어떤 매개 변수도 가지고 있지 않은데 몸체 내에서 `runningTotal`과 `amount`를 참조합니다. 이 함수는 둘러싸는 함수로부터 `runningTotal`과 `amount`에 대한 참조를 포획하여 자신의 몸체 안에서 이를 사용하고 있습니다. 참조를 포획함으로써 `makeIncrementer` 호출이 끝나도 `runningTotal`과 `amount`가 사라지지 않게 되며, 다음 `incrementer` 함수를 호출했을 때에도 `runningTotal`을 사용할 수 있게 됩니다.
 
+> **참고**
+> 
+> Swift는 최적화의 일환으로, 값이 클로저에 의해 변경되지 않고 클로저가 생성된 이후에도 변경되지 않는다면 값의 **복사본**을 포획하여 저장할 수 있습니다.
+> 
+> Swift는 또한 변수가 더 이상 필요 없을 때 이를 버리는 것까지 모든 메모리 관리를 제어합니다.
 
+다음은 `makeIncrementer`를 사용하는 예시입니다:
 
+```swift
+let incrementByTen = makeIncrementer(forIncrement: 10)
+```
 
-wip...!
+이 예시에서는 `incrementByTen`이라는 상수가, 호출될 때마다 자신의 `runningTotal` 변수에 `10`을 더하는 증감자 함수를 참조합니다. 이 함수를 여러 번 호출하면 다음과 같은 결과가 나타납니다.
+
+```swift
+incrementByTen()
+// 값 10 반환
+incrementByTen()
+// 값 20 반환
+incrementByTen()
+// 값 30 반환
+```
+
+다른 두 번째 증감자를 만들면 또 다른 저만의 `runningTotal` 변수에 대한 참조를 저장하게 됩니다.
+
+```swift
+let incrementBySeven = makeIncrementer(forIncrement: 7)
+incrementBySeven()
+// 값 7 반환
+```
+
+기존 증감자(`incrementByTen`)을 호출하면 다시 자신만의 `runningTotal` 변수를 증가시키며, `incrementBySeven`이 포획한 변수에는 영향을 주지 않습니다.
+
+```swift
+incrementByTen()
+// 값 40 반환
+```
+
+> **참고**
+> 
+> 클로저를 클래스 인스턴스의 프로퍼티로 할당하고 인스턴스나 멤버를 참조하여 그 인스턴스를 포획하면, 클로저와 인스턴스 간의 강한 순환 참조가 형성됩니다. Swift는 **포획 목록**을 사용해 이 강한 순환 참조를 깹니다. 자세한 설명은 [클로저의 강한 순환 참조](automatic-reference-counting.md#클로저의-강한-순환-참조)를 참고하세요.
+
+## 클로저는 참조형이다
+
+위 예시에서 `incrementBySeven`이나 `incrementByTen`은 상수이지만 이들이 참조하는 클로저는 여전히 포획한 `runningTotal` 변수를 증가시킬 수 있습니다. 함수와 클로저가 **참조형**이기 때문입니다.
+
+상수나 변수에 함수나 클로저를 할당할 때, 실제로는 상수나 변수가 그 함수나 클로저를 **참조하도록** 설정됩니다. 위 예시에서, `incrementByTen`이 **참조하는** 클로저를 선택하는 것은 클로저 자체의 내용이 아닌 어떤 상수를 고르는 것입니다.
+
+따라서 다른 두 가지 상수나 변수에 하나의 클로저를 할당하면 두 상수나 변수 모두 같은 클로저를 참조합니다.
+
+```swift
+let alsoIncrementByTen = incrementByTen
+alsoIncrementByTen()
+// 값 50 반환
+
+incrementByTen()
+// 값 60 반환
+```
+
+위 예시에서 `alsoIncrementByTen`을 호출하는 것이나 `incrementByTen`을 호출하는 것이나 다를 바가 없음을 알 수 있습니다. 두 개 모두 같은 클로저를 참조하므로 같은 `runningTotal`을 증가시키고 반환합니다.
+
+## 탈출 클로저
+
+클로저가 함수에 인자로 전달되지만 함수가 반환된 후에 호출되는 경우, 클로저가 함수를 **탈출한다**고 표현합니다. 함수를 선언할 때 매개 변수인 클로저가 탈출할 수 있음을 나타내려면 매개 변수형 앞에 `@escaping`을 적으세요.
+
+클로저가 탈출하는 방법 중 하나는 함수 바깥에서 정의된 변수에 저장되는 것입니다. 예를 들어, 비동기 연산을 사용하는 많은 함수는 완료 처리자로서 클로저 인자를 받습니다. 함수는 연산을 시작하고 나서 반환하지만 연산이 완료되기 전까지 클로저는 호출되지 않습니다. 클로저는 탈출하여 추후에 호출되어야 합니다. 예를 들어:
+
+```swift
+var completionHandlers: [() -> Void] = []
+func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+    completionHandlers.append(compeltionHandler)
+}
+```
+
+`someFunctionWithEscapingClosure(_:)` 함수는 클로저를 인자로 받아 함수 외부에 선언된 배열에 추가합니다. 이 함수의 매개 변수에 `@escaping`을 적지 않으면 컴파일 시간 오류가 일어납니다.
+
+탈출 클로저가 `self`를 참조하고, `self`가 클래스의 인스턴스를 참조하는 경우에는 별도의 주의가 필요합니다. 탈출 클로저에서 `self`를 포획하면 의도치 않게 강한 순환 참조가 형성되기 쉽습니다. 순환 참조에 대해서는 [자동 참조 카운팅](automatic-reference-counting.md)을 참고하세요.
+
+일반적으로 클로저는 몸체에서 변수를 사용함으로써 이들을 묵시적으로 포획하지만, 이 경우에는 포획을 명시해야 합니다. `self`를 포획하고 싶다면 사용할 때 `self`를 명시적으로 적거나 클로저의 포획 목록에 `self`를 추가하세요. `self`를 명시함으로써 의도를 명확히 하고 순환 참조가 없어야 함을 강조할 수 있습니다. 예를 들어, 아래 코드에서는 `someFunctionWithEscapingClosure(_:)`로 전달되는 클로저가 `self`를 명시적으로 참조하고 있습니다. 반면 `someFunctionWithNonescapingClosure(_:)`로 전달되는 클로저는 비탈출 클로저로, `self`를 묵시적으로 참조합니다.
+
+```swift
+func someFunctionWithNonescapingClosure(closure: () -> Void) {
+    closure()
+}
+
+class SomeClass {
+    var x = 10
+    func doSomething() {
+        someFunctionWithEscapingClosure { self.x = 100 }
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+
+let instance = SomeClass()
+instance.doSomething()
+print(instance.x)
+// "200" 출력
+
+completionHandlers.first?()
+print(instance.x)
+// "100" 출력
+```
+
+이번 `doSomething()` 버전은 `self`를 클로저의 포획 목록에 포함시켜 `self`를 묵시적으로 포획, 참조하고 있습니다.
+
+```swift
+class SomeOtherClass {
+    var x = 10
+    func doSomething() {
+        someFunctionWithEscapingClosure { [self] in x = 100 }
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+```
+
+`self`가 구조체나 열거형의 인스턴스라면 항상 `self`를 묵시적으로 참조할 수 있습니다. 그러나 그런 `self`에 대한 변경 가능한 참조는 탈출 클로저가 포획할 수 없습니다. 구조체와 열거형은 변경 가능성을 공유하지 않습니다. 자세한 설명은 [구조체와 열거형은 값형이다](classes-and-structures.md#구조체와-열거형은-값형이다)를 참고하세요.
+
+```swift
+struct SomeStruct {
+    var x = 10
+    mutating func doSomething() {
+        someFunctinoWithNonescapingClosure { x = 200 }  // Ok
+        someFunctionWithEscapingClosure { x = 100 }     // 오류
+    }
+}
+```
+
+`someFunctionWithEscapingClosure` 함수는 변경 가능한 메서드 내부에 있어 `self`도 변경 가능하므로 이를 호출하는 것이 오류를 발생합니다. 탈출 클로저는 구조체의 `self`에 대한 변경 가능한 참조를 포획할 수 없다는 규칙을 위반합니다.
+
+## 자동 클로저
+
+**자동 클로저**는 함수에 인자로 전달되는 표현식을 감싸기 위해 자동으로 만들어지는 클로저입니다. 자동 클로저는 어떤 인자도 받지 않으며, 호출되었을 때 감싸고 있는 표현식의 값을 반환합니다. 이런 문법적인 편리함 덕분에 함수의 매개 변수로 명시적인 클로저 대신 일반 표현식을 사용하면서 중괄호를 생략할 수 있습니다.
+
+자동 클로저를 받는 함수를 **호출**하는 것은 흔하지만, 그런 류의 함수를 **구현**하는 것은 흔치 않습니다. 예를 들어, `assert(condition:message:file:line:)` 함수는 `condition`과 `message` 매개 변수로 자동 클로저를 받습니다. `condition` 매개 변수는 오직 디버그 빌드 시에만 평가되고 `message` 매개 변수는 `condition`이 `false`일 때만 평가됩니다.
+
+자동 클로저는 호출되기 전까지 내부 코드를 실행하지 않으므로 평가를 늦출 수 있습니다. 평가를 늦추는 것은 평가할 시점을 제어할 수 있음을 의미하므로 부작용이 있거나 계산 비용이 많이 드는 코드에 특히 유용합니다. 아래 코드는 클로저가 평가를 늦추는 모습을 보여줍니다.
+
+```swift
+var customersInLine = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+print(customersInLine.count)
+// "5" 출력
+
+let customerProvider = { customersInLine.remove(at: 0) }
+print(customersInLine.count)
+// "5" 출력
+
+print("Now serving \(customerProvider())!")
+// "Now serving Chris!" 출력
+print(customersInLine.count)
+// "4" 출력
+```
+
+`customersInLine` 배열의 첫 번째 원소가 클로저의 코드에 의해서 지워지더라도, 클로저가 실제로 호출되기 전까지는 지워지지 않습니다. 클로저가 계속 호출되지 않으면 내부의 표현식도 영영 평가되지 않아 배열 원소도 지워지지 않습니다. `customerProvider`의 자료형은 `String`이 아니라 `() -> String`임에 유의하세요. 매개 변수가 없고 문자열을 반환하는 함수입니다.
+
+클로저를 함수에 인자로 넘겨줄 때에도 평가를 지연하는 같은 결과를 얻습니다.
+
+```swift
+// customersInLine은 ["Alex", "Ewa", "Barry", Daniella"]
+func serve(customer customerProvider: () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+serve(customer: { customersInLine.remove(at: 0) } )
+// "Now serving Alex!" 출력
+```
+
+`serve(customer:)` 함수는 고객의 이름을 반환하는 명시적 클로저를 받습니다. 아래 `serve(customer:)` 버전은 같은 연산을 수행하지만 명시적 클로저 대신 매개 변수형에 `@autoclosure` 속성을 표시해 자동 클로저를 받습니다. 이제 이 함수를 클로저 대신 `String` 인자를 받는 것처럼 호출할 수 있습니다. `customerProvider` 매개 변수형이 `@autoclosure` 속성으로 표시되어 있으므로 인자가 자동으로 클로저로 변환됩니다.
+
+```swift
+// customersInLine은 ["Ewa", "Barry", Daniella"]
+func serve(customer customerProvider: @autoclosure () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+serve(customer: customersInLine.remove(at: 0))
+// "Now serving Ewa!" 출력
+```
+
+> **참고**
+> 
+> 자동 클로저의 남용은 코드를 이해하기 어렵게 만듭니다. 문맥과 함수 이름으로 평가가 지연됨을 명확히 나타내야 합니다.
+
+탈출을 허용하는 자동 클로저를 만들려면 `@autoclosure`과 `@escaping` 속성을 동시에 사용하세요. `@escaping` 속성은 [탈출 클로저](#탈출-클로저)를 참고하세요.
+
+```swift
+// customersInLine은 ["Barry", "Daniella"]
+var customerProviders: [() -> String] = []
+func collectCustomerProviders(_ customerProvider: @autoclosure @escaping () -> String) {
+    customerProviders.append(customerProvider)
+}
+collectCustomerProviders(customersInLine.remove(at: 0))
+collectCustomerProviders(customersInLine.remove(at: 0))
+
+print("Collected \(customerProviders.count) closures.")
+// "Collected 2 closures." 출력
+for customerProvider in customerProviders {
+    print("Now serving \(customerProvider())!")
+}
+// "Now serving Barry!" 출력
+// "Now serving Daniella!" 출력
+```
+
+위 코드에서 `collectCustomerProviders(_:)` 함수는 `customerProvider` 인자로 전달된 클로저를 호출하는 것 대신 `customerProviders` 배열에 클로저를 덧붙입니다. 이 변수는 함수 바깥 영역에서 선언되므로 함수가 반환한 뒤에 배열 내의 클로저가 실행될 수 있습니다. 따라서 `customerProvider` 인자의 값은 반드시 함수 영역을 탈출하도록 허락되어야 합니다.
