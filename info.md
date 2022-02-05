@@ -27,4 +27,4 @@ search_exclude: true
 
 ## 연락처
 
-[연락처 페이지](more/contacts.md)를 참고해주세요.
+[연락처 페이지](https://woooil.github.io/swift-book/more/contacts)를 참고해주세요.
